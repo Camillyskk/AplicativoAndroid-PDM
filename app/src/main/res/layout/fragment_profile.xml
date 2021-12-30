@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/grey"
+    tools:context=".ProfileFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@color/green"
+        />
+    <TextView
+        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:text="@string/hi_lorena"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="120dp">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+            <EditText
+                android:id="@+id/nome"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/custom_edit_text"
+                android:ems="10"
+                android:hint="@string/nome"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:textColorHint="@color/grey2"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/sobrenome"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="72dp"
+                android:background="@drawable/custom_edit_text"
+                android:ems="10"
+                android:hint="@string/sobrenome"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:textColorHint="@color/grey2"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/nome" />
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="72dp"
+                android:background="@drawable/custom_edit_text"
+                android:ems="10"
+                android:hint="@string/e_mail"
+                android:importantForAutofill="no"
+                android:inputType="textEmailAddress"
+                android:textColorHint="@color/grey2"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/sobrenome" />
+
+            <EditText
+                android:id="@+id/telefone"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="72dp"
+                android:background="@drawable/custom_edit_text"
+                android:ems="10"
+                android:hint="@string/telefone"
+                android:importantForAutofill="no"
+                android:inputType="phone"
+                android:textColorHint="@color/grey2"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/email"/>
+
+            <EditText
+                android:id="@+id/cidade"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="72dp"
+                android:background="@drawable/custom_edit_text"
+                android:ems="10"
+                android:hint="@string/cidade"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:textColorHint="@color/grey2"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/telefone" />
+
+            <EditText
+                android:id="@+id/dataNasc"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="72dp"
+                android:background="@drawable/custom_edit_text"
+                android:ems="10"
+                android:hint="@string/data_de_nascimento"
+                android:importantForAutofill="no"
+                android:inputType="date"
+                android:textColorHint="@color/grey2"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/cidade" />
+
+            <EditText
+                android:id="@+id/rg"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="72dp"
+                android:background="@drawable/custom_edit_text"
+                android:ems="10"
+                android:hint="@string/rg"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:textColorHint="@color/grey2"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/dataNasc"/>
+
+            <EditText
+                android:id="@+id/cpf"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="72dp"
+                android:background="@drawable/custom_edit_text"
+                android:ems="10"
+                android:hint="@string/cpf"
+                android:importantForAutofill="no"
+                android:inputType="textEmailAddress"
+                android:textColorHint="@color/grey2"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/rg"/>
+
+            <EditText
+                android:id="@+id/senha"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="72dp"
+                android:background="@drawable/custom_edit_text"
+                android:ems="10"
+                android:hint="@string/senha"
+                android:importantForAutofill="no"
+                android:inputType="textPassword"
+                android:textColorHint="@color/grey2"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/cpf" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                app:backgroundTint="@color/orange"
+                android:background="@drawable/custom_delete_button"
+                android:text="@string/atualizar_dados"
+                android:textSize="16sp"
+                android:id="@+id/atualizar"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/senha"
+                />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="72dp"
+                android:layout_marginBottom="70dp"
+                android:layout_gravity="left"
+                android:text="@string/deletar_perfil"
+                android:background="@android:color/transparent"
+                android:id="@+id/deletar_perfil"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/atualizar"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="@string/sair"
+        android:textColor="@color/white"
+        android:layout_gravity="right"
+        android:layout_marginTop="50dp"
+        android:background="@android:color/transparent"
+        />
+
+
+</FrameLayout>

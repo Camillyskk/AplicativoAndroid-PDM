@@ -1,0 +1,84 @@
+<resources>
+    <string name="app_name">Projeto PDM</string>
+    <string name="e_mail">E-mail</string>
+    <string name="senha">Senha</string>
+    <string name="entrar">Entrar</string>
+    <string name="cadastre_se">Cadastre-se</string>
+    <string name="Nome">nome</string>
+    <string name="nome">Nome</string>
+    <string name="telefone">Telefone</string>
+    <string name="sobrenome">Sobrenome</string>
+    <string name="cidade">Cidade</string>
+    <string name="cpf">CPF</string>
+    <string name="data_de_nascimento">Data de Nascimento</string>
+    <string name="rg">RG</string>
+    <string name="cadastro">Cadastro</string>
+    <string name="login">Login</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hi_lorena">Hi Lorena</string>
+    <string name="sair">Sair</string>
+    <string name="meus_agendamentos">Meus Agendamentos</string>
+    <string name="novo_agendamento">Novo Agendamento</string>
+    <string name="esfoliacao">Esfoliacao</string>
+    <string name="agendar_hor_rio">Agendar Horário</string>
+    <string name="single_line_draw">single line draw</string>
+    <string name="notificacoes">Notificacoes</string>
+    <string name="sobre_nos">Sobre Nós</string>
+    <string name="sobre_o_aplicativo">Sobre o Aplicativo:</string>
+    <string name="descricao">O objetivo deste aplicativo é auxiliar empreendedores no gerenciamento de tempo e de clientes. Pensando nisso, idealizamos um aplicativo focado para empreendedores prestadores de serviço, onde ele terá acesso a lista de clientes e funcionários, agenda da empresa e lista de serviços disponíveis em um só lugar, sem precisar de um aplicativo para cada coisa.</string>
+    <string name="atualizar_dados">atualizar dados</string>
+    <string name="clientes">Clientes</string>
+    <string name="joao_paralepipedo">Joao Paralepipedo</string>
+    <string name="funcionarios">Funcionários</string>
+    <string name="novo_funcionario">novo funcionário</string>
+    <string name="procedimentos">Procedimentos</string>
+    <string name="novo_procedimento">novo procedimento</string>
+    <string name="criar_procedimento">Criar Procedimento</string>
+    <string name="nome_do_procedimento">Nome do Procedimento</string>
+    <string name="duracao">Duração</string>
+    <string name="criar">Criar</string>
+    <string name="valor">Valor</string>
+    <string name="agendamentos">Agendamentos</string>
+    <string name="message_conexao_ok">Conexão criada com sucesso</string>
+    <string name="message_ok">OK</string>
+    <string name="message_erro">Erro</string>
+    <string name="work_in_progress">Work in Progress</string>
+    <string name="deletar_perfil">deletar perfil</string>
+    <string name="cadastrar">Cadastrar</string>
+
+    <string-array name="procedimentos">
+        <item>Limpeza de Pele</item>
+        <item>Pintura Cabelo</item>
+        <item>Descoloração</item>
+        <item>Depilação</item>
+        <item>Corte</item>
+        <item>Escova</item>
+        <item>Manicure</item>
+        <item>Pedicure</item>
+        <item>Maquiagem</item>
+    </string-array>
+
+    <string-array name="horarios">
+        <item>08:00</item>
+        <item>08:30</item>
+        <item>09:00</item>
+        <item>09:30</item>
+        <item>10:00</item>
+        <item>10:30</item>
+        <item>11:00</item>
+        <item>11:30</item>
+        <item>13:00</item>
+        <item>13:30</item>
+        <item>14:00</item>
+        <item>14:30</item>
+        <item>15:00</item>
+        <item>15:30</item>
+        <item>16:00</item>
+        <item>16:30</item>
+        <item>17:00</item>
+        <item>17:30</item>
+        <item>18:00</item>
+        <item>18:30</item>
+    </string-array>
+</resources>

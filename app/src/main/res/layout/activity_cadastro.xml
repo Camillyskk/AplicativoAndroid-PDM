@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".CadastroActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="40dp"
+        android:paddingBottom="30dp"
+        >
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    tools:ignore="Suspicious0dp"
+    android:gravity="center_vertical"
+    >
+
+    <TextView
+        android:layout_width="109dp"
+        android:layout_height="60dp"
+        android:layout_weight="1"
+        android:text="@string/cadastro"
+        android:textColor="@color/black"
+        android:textSize="34sp"
+        android:textAlignment="textEnd"
+        >
+    </TextView>
+
+    <Button
+        android:id="@+id/bt_login"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:background="#00000000"
+        android:text="@string/login"
+        android:textColor="@color/green"
+        tools:ignore="TextContrastCheck" />
+
+</LinearLayout>
+
+        <EditText
+            android:id="@+id/nome"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/custom_edit_text"
+            android:ems="10"
+            android:hint="@string/nome"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:textColorHint="@color/grey2"
+            android:textSize="20sp"
+            tools:ignore="TextContrastCheck" />
+
+        <EditText
+            android:id="@+id/sobrenome"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/custom_edit_text"
+            android:ems="10"
+            android:hint="@string/sobrenome"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:textColorHint="@color/grey2"
+            android:textSize="20sp"
+            tools:ignore="TextContrastCheck" />
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/custom_edit_text"
+            android:ems="10"
+            android:hint="@string/e_mail"
+            android:importantForAutofill="no"
+            android:inputType="textEmailAddress"
+            android:textColorHint="@color/grey2"
+            android:textSize="20sp"
+            tools:ignore="TextContrastCheck" />
+
+        <EditText
+            android:id="@+id/telefone"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/custom_edit_text"
+            android:ems="10"
+            android:hint="@string/telefone"
+            android:importantForAutofill="no"
+            android:inputType="phone"
+            android:textColorHint="@color/grey2"
+            android:textSize="20sp"
+            tools:ignore="TextContrastCheck" />
+
+        <EditText
+            android:id="@+id/cidade"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/custom_edit_text"
+            android:ems="10"
+            android:hint="@string/cidade"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:textColorHint="@color/grey2"
+            android:textSize="20sp"
+            tools:ignore="TextContrastCheck" />
+
+        <EditText
+            android:id="@+id/dataNasc"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/custom_edit_text"
+            android:ems="10"
+            android:hint="@string/data_de_nascimento"
+            android:importantForAutofill="no"
+            android:inputType="date"
+            android:textColorHint="@color/grey2"
+            android:textSize="20sp"
+            tools:ignore="TextContrastCheck" />
+
+        <EditText
+            android:id="@+id/rg"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/custom_edit_text"
+            android:ems="10"
+            android:hint="@string/rg"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:textColorHint="@color/grey2"
+            android:textSize="20sp"
+            tools:ignore="TextContrastCheck" />
+
+        <EditText
+            android:id="@+id/cpf"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/custom_edit_text"
+            android:ems="10"
+            android:hint="@string/cpf"
+            android:importantForAutofill="no"
+            android:inputType="textEmailAddress"
+            android:textColorHint="@color/grey2"
+            android:textSize="20sp"
+            tools:ignore="TextContrastCheck" />
+
+        <EditText
+            android:id="@+id/senha"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/custom_edit_text"
+            android:ems="10"
+            android:hint="@string/senha"
+            android:importantForAutofill="no"
+            android:inputType="textPassword"
+            android:textColorHint="@color/grey2"
+            android:textSize="20sp"
+            tools:ignore="TextContrastCheck" />
+
+        <Button
+            android:id="@+id/cadastrar"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="@color/green"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:text="@string/cadastrar"
+            tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+
+    </LinearLayout>
+</ScrollView>
