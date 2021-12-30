@@ -2,17 +2,13 @@ package com.example.projetopdm;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.nfc.Tag;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,13 +42,13 @@ public class AgendamentosFragment extends Fragment {
         agendar_horario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.body_container, new AgendarHorarioFragment()).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.activity_usuario, new AgendarHorarioFragment()).commit();
 
             }
         });
 
         // vincular objetos
-        recyclerView = view.findViewById(R.id.recyclerView2);
+        recyclerView = view.findViewById(R.id.lstDados);
 
         // configuro o RecyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -74,7 +70,7 @@ public class AgendamentosFragment extends Fragment {
 
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.body_container, fragment).commit();
+                        .replace(R.id.activity_usuario, fragment).commit();
             }
         });
 

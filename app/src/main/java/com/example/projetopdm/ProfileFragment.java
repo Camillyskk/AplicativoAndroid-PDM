@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 
 import com.example.projetopdm.clinica.Agenda;
 import com.example.projetopdm.usuarios.Usuario;
@@ -78,8 +77,8 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
         //EditTexts com os dados
-        et_email = v.findViewById(R.id.email);
-        et_senha = v.findViewById(R.id.senha);
+        et_email = v.findViewById(R.id.rvemail);
+        et_senha = v.findViewById(R.id.rvsenha);
         et_telefone = v.findViewById(R.id.telefone);
         et_cidade = v.findViewById(R.id.cidade);
 

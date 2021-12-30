@@ -1,26 +1,33 @@
 package com.example.projetopdm;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.example.projetopdm.clinica.Agenda;
-import com.example.projetopdm.usuarios.Usuario;
+import com.example.projetopdm.database.DadosOpenHelper;
+import com.example.projetopdm.dominios.entidades.Usuarios;
+import com.example.projetopdm.dominios.entidades.repositorios.UsuarioRepo;
 
 import com.example.projetopdm.database.Conexao;
+import com.example.projetopdm.utilidadesadaptador.TesteAdapter;
+import com.google.android.material.snackbar.Snackbar;
+
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
 
     ConstraintLayout activity_main;
-
 
     EditText et_email, et_senha;
     Button bt_entrar, bt_cadastrar;
@@ -39,13 +46,14 @@ public class MainActivity extends AppCompatActivity {
         bt_entrar = findViewById(R.id.entrar);
         bt_cadastrar = findViewById(R.id.bt_cadastro);
 
-        et_email = findViewById(R.id.email);
-        et_senha = findViewById(R.id.senha);
+        et_email = findViewById(R.id.rvemail);
+        et_senha = findViewById(R.id.rvsenha);
 
         bt_entrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Usuario usuario = new Usuario();
+
+                /*Usuario usuario = new Usuario();
                 usuario.setEmail(et_email.getText().toString());
                 usuario.setSenha(et_senha.getText().toString());
 
@@ -58,8 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 else{
                    Intent i = new Intent(getBaseContext(), UsuarioActivity.class);
                    startActivity(i);
-                }
-
+                }*/
             }
         });
 

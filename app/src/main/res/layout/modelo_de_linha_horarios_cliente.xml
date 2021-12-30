@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextValor"
+        android:id="@+id/rvsenha"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/nome_procedimento"
@@ -45,9 +45,9 @@
         android:layout_below="@id/nome_procedimento"
         android:layout_alignParentRight="true"
         android:src="@drawable/delete"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextValor"
+        app:layout_constraintBottom_toBottomOf="@+id/rvsenha"
         app:layout_constraintEnd_toEndOf="@+id/imageViewExcluir"
-        app:layout_constraintTop_toTopOf="@+id/editTextValor" />
+        app:layout_constraintTop_toTopOf="@+id/rvsenha" />
 
     <ImageView
         android:id="@+id/imageViewExcluir"

@@ -3,7 +3,6 @@ package com.example.projetopdm;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.database.SQLException;
@@ -21,7 +20,6 @@ import android.widget.LinearLayout;
 import com.example.projetopdm.database.DadosOpenHelper;
 import com.example.projetopdm.dominios.entidades.Usuarios;
 import com.example.projetopdm.dominios.entidades.repositorios.UsuarioRepo;
-import com.example.projetopdm.usuarios.Usuario;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.time.LocalDate;
@@ -52,13 +50,13 @@ public class CadastroActivity extends AppCompatActivity {
 
         et_nome = findViewById(R.id.nome);
         et_sobrenome = findViewById(R.id.sobrenome);
-        et_email = findViewById(R.id.email);
+        et_email = findViewById(R.id.rvemail);
         et_telefone = findViewById(R.id.telefone);
         et_cidade = findViewById(R.id.cidade);
         et_dataNasc = findViewById(R.id.dataNasc);
         et_RG = findViewById(R.id.rg);
         et_CPF = findViewById(R.id.cpf);
-        et_senha = findViewById(R.id.senha);
+        et_senha = findViewById(R.id.rvsenha);
 
         cadastrar = findViewById(R.id.cadastrar);
         login = findViewById(R.id.bt_login);
@@ -116,10 +114,10 @@ public class CadastroActivity extends AppCompatActivity {
 
                     try{
                         usuarioRepo.inserir(usuario);
-
-                        //finish();
+                        Log.d("TESTE CADASTRO","funfou?");
+                        finish();
                     } catch (SQLException ex) {
-                        Log.d("TESTE CADASTRO","LC: "+ ex.getMessage());
+                        Log.d("TESTE CADASTRO ERRO","LC: "+ ex.getMessage());
                     }
                 }
             }

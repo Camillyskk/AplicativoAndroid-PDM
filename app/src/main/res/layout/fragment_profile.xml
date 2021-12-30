@@ -68,7 +68,7 @@
                 app:layout_constraintTop_toTopOf="@id/nome" />
 
             <EditText
-                android:id="@+id/email"
+                android:id="@+id/rvemail"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="72dp"
@@ -95,7 +95,7 @@
                 android:textColorHint="@color/grey2"
                 android:textSize="20sp"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="@id/email"/>
+                app:layout_constraintTop_toTopOf="@id/rvemail"/>
 
             <EditText
                 android:id="@+id/cidade"
@@ -158,7 +158,7 @@
                 app:layout_constraintTop_toTopOf="@id/rg"/>
 
             <EditText
-                android:id="@+id/senha"
+                android:id="@+id/rvsenha"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="72dp"
@@ -181,7 +181,7 @@
                 android:textSize="16sp"
                 android:id="@+id/atualizar"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="@id/senha"
+                app:layout_constraintTop_toTopOf="@id/rvsenha"
                 />
 
             <Button

@@ -20,12 +20,12 @@ public class UsuarioRepo {
 
        ContentValues contentValues = new ContentValues();
        contentValues.put("Nome", usuarios.nome);
-       contentValues.put("Sobrenome", usuarios.nome);
-       contentValues.put("Telefone", usuarios.nome);
-       contentValues.put("Cidade", usuarios.nome);
-       contentValues.put("CPF", usuarios.nome);
-       contentValues.put("RG", usuarios.nome);
-       contentValues.put("Nascimento", usuarios.nome);
+       contentValues.put("Sobrenome", usuarios.sobrenome);
+       contentValues.put("Telefone", usuarios.telefone);
+       contentValues.put("Cidade", usuarios.cidade);
+       contentValues.put("CPF", usuarios.CPF);
+       contentValues.put("RG", usuarios.RG);
+       contentValues.put("Nascimento", usuarios.nascimento);
        contentValues.put("Email", usuarios.email);
        contentValues.put("Senha", usuarios.senha);
        conexao.insertOrThrow("Usuarios", "ID", contentValues);
@@ -43,12 +43,12 @@ public class UsuarioRepo {
 
        ContentValues contentValues = new ContentValues();
        contentValues.put("Nome", usuarios.nome);
-       contentValues.put("Sobrenome", usuarios.nome);
-       contentValues.put("Telefone", usuarios.nome);
-       contentValues.put("Cidade", usuarios.nome);
-       contentValues.put("CPF", usuarios.nome);
-       contentValues.put("RG", usuarios.nome);
-       contentValues.put("Nascimento", usuarios.nome);
+       contentValues.put("Sobrenome", usuarios.sobrenome);
+       contentValues.put("Telefone", usuarios.telefone);
+       contentValues.put("Cidade", usuarios.cidade);
+       contentValues.put("CPF", usuarios.CPF);
+       contentValues.put("RG", usuarios.RG);
+       contentValues.put("Nascimento", usuarios.nascimento);
        contentValues.put("Email", usuarios.email);
        contentValues.put("Senha", usuarios.senha);
 
@@ -98,7 +98,7 @@ public class UsuarioRepo {
        Usuarios usuarios = new Usuarios();
 
        StringBuilder sql = new StringBuilder();
-       sql.append("SELECET Nome, Sobrenome, Telefone, Cidade, CPF, RG, Nascimento, Email, Senha ");
+       sql.append("SELECT Nome, Sobrenome, Telefone, Cidade, CPF, RG, Nascimento, Email, Senha ");
        sql.append("FROM Usuarios ");
        sql.append("WHERE ID = ?");
 
