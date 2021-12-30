@@ -26,8 +26,8 @@ public class ClienteRepo {
        contentValues.put("CPF", cliente.nome);
        contentValues.put("RG", cliente.nome);
        contentValues.put("Nascimento", cliente.nome);
-       contentValues.put("Usuario_Email", cliente.usuario_email);
-
+       contentValues.put("Email", cliente.email);
+       contentValues.put("Senha", cliente.senha);
        conexao.insertOrThrow("Cliente", "ID", contentValues);
    }
 
@@ -49,7 +49,8 @@ public class ClienteRepo {
        contentValues.put("CPF", cliente.nome);
        contentValues.put("RG", cliente.nome);
        contentValues.put("Nascimento", cliente.nome);
-       contentValues.put("Usuario_Email", cliente.usuario_email);
+       contentValues.put("Email", cliente.email);
+       contentValues.put("Senha", cliente.senha);
 
        String[] parametros = new String[1];
        parametros[0] = String.valueOf(cliente.ID);
@@ -82,7 +83,8 @@ public class ClienteRepo {
                 cli.RG = resultado.getString(resultado.getColumnIndexOrThrow("RG"));
                 cli.CPF = resultado.getString(resultado.getColumnIndexOrThrow("CPF"));
                 cli.nascimento = resultado.getString(resultado.getColumnIndexOrThrow("Nascimento"));
-                cli.usuario_email = resultado.getString(resultado.getColumnIndexOrThrow("Usuario_Email"));
+                cli.email = resultado.getString(resultado.getColumnIndexOrThrow("Email"));
+                cli.senha = resultado.getString(resultado.getColumnIndexOrThrow("Senha"));
 
                 clientes.add(cli);
 
@@ -96,7 +98,7 @@ public class ClienteRepo {
        Cliente cli = new Cliente();
 
        StringBuilder sql = new StringBuilder();
-       sql.append("SELECET Nome, Sobrenome, Telefone, Cidade, CPF, RG, Nascimento, Usuario_Email ");
+       sql.append("SELECET Nome, Sobrenome, Telefone, Cidade, CPF, RG, Nascimento, Email, Senha ");
        sql.append("FROM Cliente ");
        sql.append("WHERE ID = ?");
 
@@ -116,7 +118,8 @@ public class ClienteRepo {
            cli.RG = resultado.getString(resultado.getColumnIndexOrThrow("RG"));
            cli.CPF = resultado.getString(resultado.getColumnIndexOrThrow("CPF"));
            cli.nascimento = resultado.getString(resultado.getColumnIndexOrThrow("Nascimento"));
-           cli.usuario_email = resultado.getString(resultado.getColumnIndexOrThrow("Usuario_Email"));
+           cli.email = resultado.getString(resultado.getColumnIndexOrThrow("Email"));
+           cli.senha = resultado.getString(resultado.getColumnIndexOrThrow("Senha"));
            cli.ID = resultado.getInt(resultado.getColumnIndexOrThrow("ID"));
 
            return cli;
