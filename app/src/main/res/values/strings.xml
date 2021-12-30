@@ -26,9 +26,9 @@
     <string name="notificacoes">Notificacoes</string>
     <string name="sobre_nos">Sobre Nós</string>
     <string name="sobre_o_aplicativo">Sobre o Aplicativo:</string>
-    <string name="descricao">O objetivo deste aplicativo é auxiliar empreendedores no gerenciamento de tempo e de clientes. Pensando nisso, idealizamos um aplicativo focado para empreendedores prestadores de serviço, onde ele terá acesso a lista de clientes e funcionários, agenda da empresa e lista de serviços disponíveis em um só lugar, sem precisar de um aplicativo para cada coisa.</string>
+    <string name="descricao">O objetivo deste aplicativo é auxiliar empreendedores no gerenciamento de tempo e de usuarios. Pensando nisso, idealizamos um aplicativo focado para empreendedores prestadores de serviço, onde ele terá acesso a lista de usuarios e funcionários, agenda da empresa e lista de serviços disponíveis em um só lugar, sem precisar de um aplicativo para cada coisa.</string>
     <string name="atualizar_dados">atualizar dados</string>
-    <string name="clientes">Clientes</string>
+    <string name="usuarios">Clientes</string>
     <string name="joao_paralepipedo">Joao Paralepipedo</string>
     <string name="funcionarios">Funcionários</string>
     <string name="novo_funcionario">novo funcionário</string>

@@ -21,7 +21,7 @@ public class AgendamentoRepo {
         ContentValues contentValues = new ContentValues();
         contentValues.put("Dia", agendamento.dia);
         contentValues.put("Hora", agendamento.hora);
-        contentValues.put("Cliente_ID", agendamento.cliente_id);
+        contentValues.put("Usuarioss_ID", agendamento.usuarios_id);
         contentValues.put("Procedimento_ID", agendamento.procedimento_id);
 
         conexao.insertOrThrow("Agendamento", "ID", contentValues);
@@ -40,7 +40,7 @@ public class AgendamentoRepo {
         ContentValues contentValues = new ContentValues();
         contentValues.put("Dia", agendamento.dia);
         contentValues.put("Hora", agendamento.hora);
-        contentValues.put("Cliente_ID", agendamento.cliente_id);
+        contentValues.put("Usuarios_ID", agendamento.usuarios_id);
         contentValues.put("Procedimento_ID", agendamento.procedimento_id);
 
         String[] parametros = new String[1];
@@ -55,7 +55,7 @@ public class AgendamentoRepo {
 
         StringBuilder sql = new StringBuilder();
 
-        sql.append("SELECT Dia, Hora, Cliente_ID, Procedimento_ID ");
+        sql.append("SELECT Dia, Hora, Usuarios_ID, Procedimento_ID ");
         sql.append("FROM Agendamento ");
 
         Cursor resultado = conexao.rawQuery(sql.toString(), null);
@@ -67,7 +67,7 @@ public class AgendamentoRepo {
                 Agendamento agendamento = new Agendamento();
 
                 agendamento.ID = resultado.getInt(resultado.getColumnIndexOrThrow("ID"));
-                agendamento.cliente_id = resultado.getInt(resultado.getColumnIndexOrThrow("Cliente_ID"));
+                agendamento.usuarios_id = resultado.getInt(resultado.getColumnIndexOrThrow("Usuarios_ID"));
                 agendamento.procedimento_id = resultado.getInt(resultado.getColumnIndexOrThrow("Procedimento_ID"));
                 agendamento.dia = resultado.getString(resultado.getColumnIndexOrThrow("Dia"));
                 agendamento.hora = resultado.getString(resultado.getColumnIndexOrThrow("Hora"));
@@ -84,7 +84,7 @@ public class AgendamentoRepo {
         Agendamento agendamento = new Agendamento();
 
         StringBuilder sql = new StringBuilder();
-        sql.append("SELECT Dia, Hora, Cliente_ID, Procedimento_ID ");
+        sql.append("SELECT Dia, Hora, Usuarios_ID, Procedimento_ID ");
         sql.append("FROM Agendamento ");
         sql.append("WHERE ID = ?");
 
@@ -98,7 +98,7 @@ public class AgendamentoRepo {
             resultado.moveToFirst();
 
             agendamento.ID = resultado.getInt(resultado.getColumnIndexOrThrow("ID"));
-            agendamento.cliente_id = resultado.getInt(resultado.getColumnIndexOrThrow("Cliente_ID"));
+            agendamento.usuarios_id = resultado.getInt(resultado.getColumnIndexOrThrow("Usuarios_ID"));
             agendamento.procedimento_id = resultado.getInt(resultado.getColumnIndexOrThrow("Procedimento_ID"));
             agendamento.dia = resultado.getString(resultado.getColumnIndexOrThrow("Dia"));
             agendamento.hora = resultado.getString(resultado.getColumnIndexOrThrow("Hora"));

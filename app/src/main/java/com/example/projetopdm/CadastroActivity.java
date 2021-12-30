@@ -1,18 +1,28 @@
 package com.example.projetopdm;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
+import com.example.projetopdm.database.DadosOpenHelper;
+import com.example.projetopdm.dominios.entidades.Usuarios;
+import com.example.projetopdm.dominios.entidades.repositorios.UsuarioRepo;
 import com.example.projetopdm.usuarios.Usuario;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -23,11 +33,22 @@ import java.time.format.ResolverStyle;
 public class CadastroActivity extends AppCompatActivity {
     EditText et_nome, et_sobrenome, et_email, et_telefone, et_cidade, et_dataNasc, et_RG, et_CPF, et_senha;
     Button cadastrar, login;
+    String nome, sobrenome, CPF, RG, cidade, telefone, nascimento, email, senha;
+
+    LinearLayout activity_cadastro;
+
+    SQLiteDatabase conexao;
+    DadosOpenHelper dadosOpenHelper;
+    Usuarios usuario;
+    UsuarioRepo usuarioRepo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
+        activity_cadastro = (LinearLayout) findViewById(R.id.activity_cadastro);
+
+        criarConexao(); //funcao copiada pq tava dando erro no layout
 
         et_nome = findViewById(R.id.nome);
         et_sobrenome = findViewById(R.id.sobrenome);
@@ -56,7 +77,7 @@ public class CadastroActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(validarNome(et_nome) && validarNome(et_sobrenome) && validarRG(et_RG) && validarCPF(et_CPF) && validarDataNasc(et_dataNasc) && validarEmail(et_email) && validarTelefone(et_telefone) && validarCidade(et_cidade) && validarSenha(et_senha)){
-                   Usuario usuarioNovo = new Usuario();
+                  /*Usuario usuarioNovo = new Usuario();
                    usuarioNovo.setNome(et_nome.getText().toString());
                    usuarioNovo.setSobrenome(et_sobrenome.getText().toString());
                    usuarioNovo.setEmail(et_email.getText().toString());
@@ -69,7 +90,37 @@ public class CadastroActivity extends AppCompatActivity {
 
                    Usuario.cadastrar(usuarioNovo);
                     Intent i = new Intent(getBaseContext(), UsuarioActivity.class);
-                    startActivity(i);
+                    startActivity(i);*/
+
+                    usuario = new Usuarios();
+
+                    nome = et_nome.getText().toString();
+                    sobrenome = et_sobrenome.getText().toString();
+                    email = et_email.getText().toString();
+                    telefone = et_telefone.getText().toString();
+                    cidade = et_cidade.getText().toString();
+                    nascimento = et_dataNasc.getText().toString();
+                    RG = et_RG.getText().toString();
+                    CPF = et_CPF.getText().toString();
+                    senha = et_senha.getText().toString();
+
+                    usuario.nome = nome;
+                    usuario.sobrenome = sobrenome;
+                    usuario.telefone = telefone;
+                    usuario.email = email;
+                    usuario.senha = senha;
+                    usuario.cidade = cidade;
+                    usuario.CPF = CPF;
+                    usuario.RG = RG;
+                    usuario.nascimento = nascimento;
+
+                    try{
+                        usuarioRepo.inserir(usuario);
+
+                        //finish();
+                    } catch (SQLException ex) {
+                        Log.d("TESTE CADASTRO","LC: "+ ex.getMessage());
+                    }
                 }
             }
         });
@@ -151,5 +202,23 @@ public class CadastroActivity extends AppCompatActivity {
             return false;
         }
         return true;
+    }
+    public void criarConexao() {
+        try {
+            dadosOpenHelper = new DadosOpenHelper(getBaseContext());
+
+            conexao = dadosOpenHelper.getWritableDatabase();
+
+            Snackbar.make(activity_cadastro, R.string.message_conexao_ok, Snackbar.LENGTH_LONG).setAction(R.string.message_ok, null).show();
+
+            usuarioRepo = new UsuarioRepo(conexao);
+
+        } catch (SQLException ex) {
+            AlertDialog.Builder dlg = new AlertDialog.Builder(getBaseContext());
+            dlg.setTitle(R.string.message_erro);
+            dlg.setMessage(ex.getMessage());
+            dlg.setNeutralButton(R.string.message_ok, null);
+            dlg.show();
+        }
     }
 }
