@@ -11,7 +11,9 @@ import android.os.Bundle;
 import android.widget.LinearLayout;
 
 import com.example.projetopdm.database.DadosOpenHelper;
+import com.example.projetopdm.dominios.entidades.Agendamento;
 import com.example.projetopdm.dominios.entidades.Usuarios;
+import com.example.projetopdm.dominios.entidades.repositorios.AgendamentoRepo;
 import com.example.projetopdm.dominios.entidades.repositorios.UsuarioRepo;
 import com.example.projetopdm.utilidadesadaptador.TesteAdapter;
 import com.google.android.material.snackbar.Snackbar;
@@ -34,9 +36,21 @@ public class TesteAct extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         criarConexao();
 
+        //quando marcar o agendamento e reabrir a activity usar isso pra atualizar o recycler automaticamente
+        //startActivityForResult(nome intent, 0);
+        /*protected void onActivityResult(int requestCode, int resultCode, Intent data){
+            if (requestCode == 0){
+                List<Agendamento> dados = agendamentoRepo.buscarTodos();
+                agendamentoAdapter = new AgendamentoAdapter(dados);
+                lstDados.setAdapter(agendamentoAdapter);
+            }
+        }*/
+
+
 
         RecyclerView lstDados = (RecyclerView) findViewById(R.id.lstDados);
 
+        lstDados.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         lstDados.setLayoutManager(linearLayoutManager);
 
