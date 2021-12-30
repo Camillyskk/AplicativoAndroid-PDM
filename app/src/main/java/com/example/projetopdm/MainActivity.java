@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         activity_main = (ConstraintLayout) findViewById(R.id.activity_main);
+        //deleteDatabase("db_clinica");     se precisar mudar mais alguma coisa na estrutura
         Conexao.criarConexao(activity_main, getBaseContext());
 
         bt_entrar = findViewById(R.id.entrar);
