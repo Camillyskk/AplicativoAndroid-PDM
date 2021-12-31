@@ -30,6 +30,10 @@ public class Agenda extends Horario {
 
     public static Usuario autenticarUsuario(Usuario usu) {
         ///  carregar lista de usuários
+
+
+
+
         carregarUsuariosDoBanco();
 
         for (Usuario usuarioProcurado : usuarios) {

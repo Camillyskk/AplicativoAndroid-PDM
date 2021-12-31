@@ -84,8 +84,8 @@ public class ProfileFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
 
         //EditTexts com os dados
-        et_email = v.findViewById(R.id.rvemail);
-        et_senha = v.findViewById(R.id.rvsenha);
+        et_email = v.findViewById(R.id.email);
+        et_senha = v.findViewById(R.id.senha);
         et_telefone = v.findViewById(R.id.telefone);
         et_cidade = v.findViewById(R.id.cidade);
         et_dataNasc = v.findViewById(R.id.dataNasc);

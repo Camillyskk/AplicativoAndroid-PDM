@@ -21,7 +21,7 @@ public class TesteAdapter extends RecyclerView.Adapter<TesteAdapter.ViewHolderTe
     }
 
     @Override
-    public TesteAdapter.ViewHolderTeste onCreateViewHolder(ViewGroup parent, int viewType) {
+    public TesteAdapter.ViewHolderTeste onCreateViewHolder(ViewGroup parent, int viewType) { //pega o modelo de linha
 
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext()); //referencia layout
 
@@ -57,8 +57,8 @@ public class TesteAdapter extends RecyclerView.Adapter<TesteAdapter.ViewHolderTe
         public ViewHolderTeste(View itemView){
             super(itemView);
 
-            rvemail = itemView.findViewById(R.id.rvemail);
-            rvsenha = itemView.findViewById(R.id.rvsenha);
+            rvemail = itemView.findViewById(R.id.email);
+            rvsenha = itemView.findViewById(R.id.senha);
 
         }
     }

@@ -49,7 +49,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/rvemail"
+        android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginStart="12dp"
@@ -69,7 +69,7 @@
         tools:ignore="TextContrastCheck" />
 
     <EditText
-        android:id="@+id/rvsenha"
+        android:id="@+id/senha"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginStart="12dp"
@@ -89,7 +89,7 @@
         tools:ignore="TextContrastCheck" />
 
     <Button
-        android:id="@+id/entrar"
+        android:id="@+id/bt_entrar"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginStart="20dp"

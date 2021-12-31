@@ -50,13 +50,13 @@ public class CadastroActivity extends AppCompatActivity {
 
         et_nome = findViewById(R.id.nome);
         et_sobrenome = findViewById(R.id.sobrenome);
-        et_email = findViewById(R.id.rvemail);
+        et_email = findViewById(R.id.email);
         et_telefone = findViewById(R.id.telefone);
         et_cidade = findViewById(R.id.cidade);
         et_dataNasc = findViewById(R.id.dataNasc);
         et_RG = findViewById(R.id.rg);
         et_CPF = findViewById(R.id.cpf);
-        et_senha = findViewById(R.id.rvsenha);
+        et_senha = findViewById(R.id.senha);
 
         cadastrar = findViewById(R.id.cadastrar);
         login = findViewById(R.id.bt_login);

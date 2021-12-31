@@ -19,7 +19,7 @@ public class ModeloDeLinhaHorario extends RecyclerView.ViewHolder {
         super(itemView);
         // vinculações
         nomeProcedimento = itemView.findViewById(R.id.nome_procedimento);
-        valor = itemView.findViewById(R.id.rvsenha);
+        valor = itemView.findViewById(R.id.senha);
         iconeExcluir = itemView.findViewById(R.id.imageViewEditar);
         iconeEditar = itemView.findViewById(R.id.imageViewExcluir);
     }
