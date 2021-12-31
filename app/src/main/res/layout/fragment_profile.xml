@@ -32,7 +32,7 @@
         android:id="@+id/bt_sair"/>
 
     <Button
-        android:id="@+id/deletar_perfil"
+        android:id="@+id/bt_deletar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"

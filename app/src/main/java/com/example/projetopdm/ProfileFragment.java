@@ -10,6 +10,7 @@ import static com.example.projetopdm.CadastroActivity.validarSenha;
 import static com.example.projetopdm.CadastroActivity.validarTelefone;
 import static com.example.projetopdm.MainActivity.usuarioatual;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -27,23 +28,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.projetopdm.clinica.Agenda;
 import com.example.projetopdm.database.DadosOpenHelper;
 import com.example.projetopdm.dominios.entidades.Usuarios;
 import com.example.projetopdm.dominios.entidades.repositorios.UsuarioRepo;
 import com.example.projetopdm.usuarios.Usuario;
-import com.google.android.material.snackbar.Snackbar;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProfileFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ProfileFragment extends Fragment {
 
     EditText et_nome, et_sobrenome, et_email, et_telefone, et_cidade, et_dataNasc, et_RG, et_CPF, et_senha;
-    Button bt_atualizar, bt_sair;
+    Button bt_atualizar, bt_sair, bt_deletar;
 
     static SQLiteDatabase conexao;
     static DadosOpenHelper dadosOpenHelper;
@@ -61,17 +57,8 @@ public class ProfileFragment extends Fragment {
     private String mParam2;
 
     public ProfileFragment() {
-        // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfileFragment.
-     */
     // TODO: Rename and change types and number of parameters
     public static ProfileFragment newInstance(String param1, String param2) {
         ProfileFragment fragment = new ProfileFragment();
@@ -109,12 +96,12 @@ public class ProfileFragment extends Fragment {
         et_CPF = v.findViewById(R.id.cpf);
         et_senha = v.findViewById(R.id.senha);
 
-
         bt_atualizar = v.findViewById(R.id.atualizar);
         bt_sair = v.findViewById(R.id.bt_sair);
+        bt_deletar = v.findViewById(R.id.bt_deletar);
 
 
-        Log.d("ID: ", toString().valueOf(usuarioatual.ID));
+        /*Log.d("ID: ", toString().valueOf(usuarioatual.ID));
         Log.d("Cidade: ", usuarioatual.cidade.toString());
         Log.d("Nome: ", usuarioatual.nome.toString());
         Log.d("Sobrenome: ", usuarioatual.sobrenome.toString());
@@ -123,7 +110,7 @@ public class ProfileFragment extends Fragment {
         Log.d("Telefone: ", usuarioatual.telefone.toString());
         Log.d("Nascimento: ", usuarioatual.nascimento.toString());
         Log.d("Email: ", usuarioatual.email.toString());
-        Log.d("Senha: ", usuarioatual.senha.toString());
+        Log.d("Senha: ", usuarioatual.senha.toString());*/
 
 
         et_nome.setText(usuarioatual.nome.toString());
@@ -138,13 +125,12 @@ public class ProfileFragment extends Fragment {
 
 
         //Desabilitar os EditTexts
-        //desabilitarEditTexts();
+        //desabilitarEditTexts(); //se deixar ativado dá erro
 
         bt_atualizar.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
-
                 Usuarios user = new Usuarios();
 
                 user.ID = usuarioatual.ID;
@@ -177,6 +163,32 @@ public class ProfileFragment extends Fragment {
                 Intent i = new Intent(getActivity(), MainActivity.class); //volta pro login
                 startActivity(i);
             }
+        });
+
+
+        //chama o metodo mas nao aparece o builder
+        bt_deletar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Cria mensagem de alerta
+                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(getContext()); // 2 - Estilo do Alerta
+                builder.setTitle("Exclusão de usuário");
+                builder.setMessage("Você realmente deseja excluir seu registro?");
+                android.app.AlertDialog dialog = builder.create();
+                // Adiciona botão, se null apenas fecha o alerta
+                builder.setNegativeButton("Não", null);
+                // adiciona botão, evento onClick adicionado
+                builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        usuarioRepo.excluir(usuarioatual.ID);
+                        Toast.makeText(getContext(),"Registro excluído sucesso!", Toast.LENGTH_SHORT).show();
+                        usuarioatual = null;
+                        Intent i = new Intent(getActivity(), MainActivity.class);
+                        startActivity(i);
+                    };
+                }
+            );}
         });
 
         return v;
