@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     static DadosOpenHelper dadosOpenHelper;
 
     UsuarioRepo usuarioRepo = new UsuarioRepo(conexao);
-    Usuarios usuarioatual = new Usuarios();
+    static Usuarios usuarioatual = new Usuarios();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
             conexao = dadosOpenHelper.getWritableDatabase();
 
-            Snackbar.make(activity_main, R.string.message_conexao_ok, Snackbar.LENGTH_LONG).setAction(R.string.message_ok, null).show();
+            //Snackbar.make(activity_main, R.string.message_conexao_ok, Snackbar.LENGTH_LONG).setAction(R.string.message_ok, null).show();
 
             usuarioRepo = new UsuarioRepo(conexao);
 
@@ -111,4 +111,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public static Usuarios getUsuarioAtual() {
+        return usuarioatual;
+    }
 }

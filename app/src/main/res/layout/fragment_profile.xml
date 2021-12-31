@@ -31,6 +31,14 @@
         android:background="@android:color/transparent"
         android:id="@+id/bt_sair"/>
 
+    <Button
+        android:id="@+id/deletar_perfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:background="@android:color/transparent"
+        android:text="@string/deletar_perfil" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -101,7 +109,7 @@
                 android:textColorHint="@color/grey2"
                 android:textSize="20sp"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="@id/email"/>
+                app:layout_constraintTop_toTopOf="@id/email" />
 
             <EditText
                 android:id="@+id/cidade"
@@ -146,7 +154,7 @@
                 android:textColorHint="@color/grey2"
                 android:textSize="20sp"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="@id/dataNasc"/>
+                app:layout_constraintTop_toTopOf="@id/dataNasc" />
 
             <EditText
                 android:id="@+id/cpf"
@@ -161,7 +169,7 @@
                 android:textColorHint="@color/grey2"
                 android:textSize="20sp"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="@id/rg"/>
+                app:layout_constraintTop_toTopOf="@id/rg" />
 
             <EditText
                 android:id="@+id/senha"
@@ -170,7 +178,7 @@
                 android:layout_marginTop="72dp"
                 android:background="@drawable/custom_edit_text"
                 android:ems="10"
-                android:hint="***"
+                android:hint="********"
                 android:importantForAutofill="no"
                 android:inputType="textPassword"
                 android:textColorHint="@color/grey2"
@@ -180,41 +188,29 @@
                 tools:ignore="DuplicateClickableBoundsCheck" />
 
             <Button
+                android:id="@+id/atualizar"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="48dp"
                 android:layout_marginTop="72dp"
-                app:backgroundTint="@color/orange"
                 android:background="@drawable/custom_delete_button"
                 android:text="@string/atualizar_dados"
                 android:textSize="16sp"
-                android:id="@+id/atualizar"
+                app:backgroundTint="@color/orange"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="@id/senha"
-                />
+                app:layout_constraintTop_toTopOf="@id/senha" />
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="72dp"
-                android:layout_gravity="left"
-                android:text="@string/deletar_perfil"
-                android:background="@android:color/transparent"
-                android:id="@+id/deletar_perfil"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="@id/atualizar"/>
-
-            <Button
+                android:id="@+id/button"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="56dp"
+                android:background="@android:color/transparent"
                 android:text="@string/sair"
                 android:textColor="@color/red"
-                android:layout_gravity="right"
-                android:layout_marginTop="72dp"
-                android:layout_marginBottom="70dp"
-                android:background="@android:color/transparent"
+                app:backgroundTint="@color/orange"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="@id/deletar_perfil"
-                />
+                app:layout_constraintTop_toTopOf="@id/atualizar" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

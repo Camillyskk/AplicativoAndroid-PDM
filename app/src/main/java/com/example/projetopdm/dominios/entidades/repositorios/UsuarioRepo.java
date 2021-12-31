@@ -59,7 +59,7 @@ public class UsuarioRepo {
        String[] parametros = new String[1];
        parametros[0] = String.valueOf(usuarios.ID);
 
-       conexao.update("Usuario", contentValues, "ID = ?", parametros);
+       conexao.update("Usuarios", contentValues, "ID = ?", parametros);
    }
 
    public List<Usuarios> buscarUsuarios() {
@@ -72,13 +72,10 @@ public class UsuarioRepo {
         //sql.append("SELECT Nome, Sobrenome, Telefone, Cidade, CPF, RG, Nascimento, Email, Senha ");
         sql.append("FROM Usuarios ");
 
-       Log.d("TESTE","ANTES DO RESULTADO");
         Cursor resultado = conexao.rawQuery(sql.toString(), null);
 
         if (resultado.getCount() > 0){
             resultado.moveToFirst();
-            Log.d("TESTE","DEPOIS DO MOVE TO FIRST");
-
             do {
                 Usuarios usuario = new Usuarios();
 

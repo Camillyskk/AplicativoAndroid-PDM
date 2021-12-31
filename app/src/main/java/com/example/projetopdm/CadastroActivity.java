@@ -209,7 +209,7 @@ public class CadastroActivity extends AppCompatActivity {
 
             conexao = dadosOpenHelper.getWritableDatabase();
 
-            Snackbar.make(activity_cadastro, R.string.message_conexao_ok, Snackbar.LENGTH_LONG).setAction(R.string.message_ok, null).show();
+            //Snackbar.make(activity_cadastro, R.string.message_conexao_ok, Snackbar.LENGTH_LONG).setAction(R.string.message_ok, null).show();
 
             usuarioRepo = new UsuarioRepo(conexao);
 

@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.projetopdm.database.DadosOpenHelper;
+import com.example.projetopdm.dominios.entidades.Usuarios;
 import com.example.projetopdm.dominios.entidades.repositorios.UsuarioRepo;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
