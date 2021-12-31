@@ -21,7 +21,7 @@ public class Agenda extends Horario {
         Usuario usuario = new Usuario();
         usuario.setNome("Guilherme");
         usuario.setSobrenome("Borges");
-        usuario.setEmail("adm");
+        usuario.setEmail("usuario@user.com");
         usuario.setSenha("adm");
         usuarios.add(usuario);
 

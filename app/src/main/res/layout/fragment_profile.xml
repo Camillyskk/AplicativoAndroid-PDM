@@ -24,16 +24,22 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp"
         />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sair"
+        android:background="@android:color/transparent"
+        android:id="@+id/bt_sair"/>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="120dp">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:paddingLeft="15dp"
             android:paddingRight="15dp">
 
@@ -44,7 +50,7 @@
                 android:layout_marginTop="24dp"
                 android:background="@drawable/custom_edit_text"
                 android:ems="10"
-                android:hint="@string/nome"
+                android:hint="@string/usuario"
                 android:importantForAutofill="no"
                 android:inputType="text"
                 android:textColorHint="@color/grey2"
@@ -59,7 +65,7 @@
                 android:layout_marginTop="72dp"
                 android:background="@drawable/custom_edit_text"
                 android:ems="10"
-                android:hint="@string/sobrenome"
+                android:hint="@string/sobrenome_usuario"
                 android:importantForAutofill="no"
                 android:inputType="text"
                 android:textColorHint="@color/grey2"
@@ -74,7 +80,7 @@
                 android:layout_marginTop="72dp"
                 android:background="@drawable/custom_edit_text"
                 android:ems="10"
-                android:hint="@string/e_mail"
+                android:hint="@string/usuario_user_com"
                 android:importantForAutofill="no"
                 android:inputType="textEmailAddress"
                 android:textColorHint="@color/grey2"
@@ -89,7 +95,7 @@
                 android:layout_marginTop="72dp"
                 android:background="@drawable/custom_edit_text"
                 android:ems="10"
-                android:hint="@string/telefone"
+                android:hint="@string/_555140028922"
                 android:importantForAutofill="no"
                 android:inputType="phone"
                 android:textColorHint="@color/grey2"
@@ -104,7 +110,7 @@
                 android:layout_marginTop="72dp"
                 android:background="@drawable/custom_edit_text"
                 android:ems="10"
-                android:hint="@string/cidade"
+                android:hint="@string/capivara_do_sul"
                 android:importantForAutofill="no"
                 android:inputType="text"
                 android:textColorHint="@color/grey2"
@@ -119,7 +125,7 @@
                 android:layout_marginTop="72dp"
                 android:background="@drawable/custom_edit_text"
                 android:ems="10"
-                android:hint="@string/data_de_nascimento"
+                android:hint="@string/_06_03_2003"
                 android:importantForAutofill="no"
                 android:inputType="date"
                 android:textColorHint="@color/grey2"
@@ -134,7 +140,7 @@
                 android:layout_marginTop="72dp"
                 android:background="@drawable/custom_edit_text"
                 android:ems="10"
-                android:hint="@string/rg"
+                android:hint="@string/_112233445566"
                 android:importantForAutofill="no"
                 android:inputType="number"
                 android:textColorHint="@color/grey2"
@@ -149,7 +155,7 @@
                 android:layout_marginTop="72dp"
                 android:background="@drawable/custom_edit_text"
                 android:ems="10"
-                android:hint="@string/cpf"
+                android:hint="@string/_7841123789"
                 android:importantForAutofill="no"
                 android:inputType="textEmailAddress"
                 android:textColorHint="@color/grey2"
@@ -164,7 +170,7 @@
                 android:layout_marginTop="72dp"
                 android:background="@drawable/custom_edit_text"
                 android:ems="10"
-                android:hint="@string/senha"
+                android:hint="***"
                 android:importantForAutofill="no"
                 android:inputType="textPassword"
                 android:textColorHint="@color/grey2"
@@ -175,6 +181,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
+                android:layout_marginTop="72dp"
                 app:backgroundTint="@color/orange"
                 android:background="@drawable/custom_delete_button"
                 android:text="@string/atualizar_dados"
@@ -188,7 +195,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="72dp"
-                android:layout_marginBottom="70dp"
                 android:layout_gravity="left"
                 android:text="@string/deletar_perfil"
                 android:background="@android:color/transparent"
@@ -196,18 +202,22 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="@id/atualizar"/>
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="@string/sair"
+                android:textColor="@color/red"
+                android:layout_gravity="right"
+                android:layout_marginTop="72dp"
+                android:layout_marginBottom="70dp"
+                android:background="@android:color/transparent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/deletar_perfil"
+                />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:text="@string/sair"
-        android:textColor="@color/white"
-        android:layout_gravity="right"
-        android:layout_marginTop="50dp"
-        android:background="@android:color/transparent"
-        />
 
 
 </FrameLayout>

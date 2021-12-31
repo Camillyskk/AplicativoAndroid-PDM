@@ -70,13 +70,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //Desabilitar editTexts, arrumar os placeholders, ajustar a altura pra funcionar
-        //o scrollview certinho
+        //Colocar os dados do banco como placeholder nos EditTexts
         //ver a exclusão de agendamentos, pra poder tirar os items excluidos da tela
         //ver se quando clica em editar e abre a outra fragment realment vai atualizar
         //o agendamento
-        //mudar o texto do AboutUs
-        //verificar validações
 
         bt_cadastrar.setOnClickListener(new View.OnClickListener() {
             @Override

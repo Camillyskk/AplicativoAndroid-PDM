@@ -1,12 +1,19 @@
 package com.example.projetopdm;
 
+import static com.example.projetopdm.CadastroActivity.validarCPF;
 import static com.example.projetopdm.CadastroActivity.validarCidade;
+import static com.example.projetopdm.CadastroActivity.validarDataNasc;
 import static com.example.projetopdm.CadastroActivity.validarEmail;
+import static com.example.projetopdm.CadastroActivity.validarNome;
+import static com.example.projetopdm.CadastroActivity.validarRG;
 import static com.example.projetopdm.CadastroActivity.validarSenha;
 import static com.example.projetopdm.CadastroActivity.validarTelefone;
 
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 
@@ -26,9 +33,8 @@ import com.example.projetopdm.usuarios.Usuario;
  */
 public class ProfileFragment extends Fragment {
 
-    EditText et_email, et_senha, et_telefone, et_cidade;
-//    ImageButton edit_email, edit_senha, edit_telefone, edit_cidade;
-    Button bt_atualizar;
+    EditText et_nome, et_sobrenome, et_email, et_telefone, et_cidade, et_dataNasc, et_RG, et_CPF, et_senha;
+    Button bt_atualizar, bt_sair;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -76,59 +82,44 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
+
         //EditTexts com os dados
         et_email = v.findViewById(R.id.rvemail);
         et_senha = v.findViewById(R.id.rvsenha);
         et_telefone = v.findViewById(R.id.telefone);
         et_cidade = v.findViewById(R.id.cidade);
-
-        //Botoes para editar
-//        edit_email = v.findViewById(R.id.editar_email);
-//        edit_senha = v.findViewById(R.id.editar_senha);
-//        edit_telefone = v.findViewById(R.id.editar_telefone);
-//        edit_cidade = v.findViewById(R.id.editar_cidade);
+        et_dataNasc = v.findViewById(R.id.dataNasc);
+        et_RG = v.findViewById(R.id.rg);
+        et_CPF = v.findViewById(R.id.cpf);
+        et_senha = v.findViewById(R.id.senha);
 
         bt_atualizar = v.findViewById(R.id.atualizar);
+        bt_sair = v.findViewById(R.id.bt_sair);
 
         //Desabilitar os EditTexts
-        disableAll();
-
-        //Adicionando Listeners para os botoes de edição dos dados
-
-//        edit_email.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                ableEditText(et_email);
-//            }
-//        });
-//
-//        edit_senha.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                ableEditText(et_senha);
-//            }
-//        });
-//
-//        edit_telefone.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                ableEditText(et_telefone);
-//            }
-//        });
-//
-//        edit_cidade.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                ableEditText(et_cidade);
-//            }
-//        });
+        desabilitarEditTexts();
 
         bt_atualizar.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
-                if(isDadosValidos()) {
-                    disableAll();
+//                puxar dados do banco e colocar no text dos editText
+                if(et_email.isEnabled()){
+                   if(isDadosValidos()) {
+                    desabilitarEditTexts();
+                    }
                 }
+                else{
+                    habilitarEditTexts();
+                }
+            }
+        });
+
+        bt_sair.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), MainActivity.class); //volta pro login
+                startActivity(i);
             }
         });
 
@@ -149,23 +140,42 @@ public class ProfileFragment extends Fragment {
         //ajustar pra puxar os dados do banco
     }
 
-    public void disableEditText(EditText editText){
-        editText.setEnabled(false);
+    public void habilitarEditTexts(){
+        et_nome.setEnabled(true);
+        et_sobrenome.setEnabled(true);
+        et_email.setEnabled(true);
+        et_senha.setEnabled(true);
+        et_cidade.setEnabled(true);
+        et_telefone.setEnabled(true);
+        et_dataNasc.setEnabled(true);
+        et_CPF.setEnabled(true);
+        et_RG.setEnabled(true);
     }
 
-    public void ableEditText(EditText editText){
-        editText.setEnabled(true);
+    public void desabilitarEditTexts (){
+        et_nome.setEnabled(false);
+        et_sobrenome.setEnabled(false);
+        et_email.setEnabled(false);
+        et_senha.setEnabled(false);
+        et_cidade.setEnabled(false);
+        et_telefone.setEnabled(false);
+        et_dataNasc.setEnabled(false);
+        et_CPF.setEnabled(false);
+        et_RG.setEnabled(false);
     }
 
-    public void disableAll (){
-        disableEditText(et_email);
-        disableEditText(et_senha);
-        disableEditText(et_cidade);
-        disableEditText(et_telefone);
-    }
-
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public boolean isDadosValidos(){
-        if(validarEmail(et_email) && validarSenha(et_senha) && validarTelefone(et_telefone) && validarCidade(et_cidade)){
+        if(validarNome(et_nome) &&
+           validarNome(et_sobrenome) &&
+           validarEmail(et_email) &&
+           validarCPF(et_CPF) &&
+           validarRG(et_RG) &&
+           validarEmail(et_email) &&
+           validarSenha(et_senha) &&
+           validarTelefone(et_telefone) &&
+           validarCidade(et_cidade) &&
+           validarDataNasc(et_dataNasc)){
             return true;
         }
         return false;

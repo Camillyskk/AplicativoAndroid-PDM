@@ -74,6 +74,7 @@ public class CadastroActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
+
                 if(validarNome(et_nome) && validarNome(et_sobrenome) && validarRG(et_RG) && validarCPF(et_CPF) && validarDataNasc(et_dataNasc) && validarEmail(et_email) && validarTelefone(et_telefone) && validarCidade(et_cidade) && validarSenha(et_senha)){
                   /*Usuario usuarioNovo = new Usuario();
                    usuarioNovo.setNome(et_nome.getText().toString());
@@ -167,7 +168,8 @@ public class CadastroActivity extends AppCompatActivity {
         return true;
     }
 
-    public static boolean validarTelefone(EditText editText){
+    public static boolean
+    validarTelefone(EditText editText){
         String telefone = editText.getText().toString();
         if(telefone.length()<11){
             editText.setError("O telefone precisa ter 11 digitos, incluindo o DDD.");

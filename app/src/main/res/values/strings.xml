@@ -26,7 +26,7 @@
     <string name="notificacoes">Notificacoes</string>
     <string name="sobre_nos">Sobre Nós</string>
     <string name="sobre_o_aplicativo">Sobre o Aplicativo:</string>
-    <string name="descricao">O objetivo deste aplicativo é auxiliar empreendedores no gerenciamento de tempo e de usuarios. Pensando nisso, idealizamos um aplicativo focado para empreendedores prestadores de serviço, onde ele terá acesso a lista de usuarios e funcionários, agenda da empresa e lista de serviços disponíveis em um só lugar, sem precisar de um aplicativo para cada coisa.</string>
+    <string name="descricao">O objetivo deste aplicativo é auxiliar empreendedores no gerenciamento de tempo e de clientes. Pensando nisso, idealizamos um aplicativo para um salão de beleza, onde o cliente terá autonomia para agendar, editar ou desmarcar horários, garantindo a automatização do gerencciamento de clientes e horários e uma maior eficiência do serviço prestado.</string>
     <string name="atualizar_dados">atualizar dados</string>
     <string name="usuarios">Clientes</string>
     <string name="joao_paralepipedo">Joao Paralepipedo</string>
@@ -46,6 +46,16 @@
     <string name="work_in_progress">Work in Progress</string>
     <string name="deletar_perfil">deletar perfil</string>
     <string name="cadastrar">Cadastrar</string>
+    <string name="usuario">Usuario</string>
+    <string name="sobrenome_usuario">sobrenome usuario</string>
+    <string name="usuario_user_com">usuario@user.com</string>
+    <string name="_555140028922">555140028922</string>
+    <string name="capivara_do_sul">Capivara do Sul</string>
+    <string name="_06_03_2003">06/03/2003</string>
+    <string name="_112233445566">112233445566</string>
+    <string name="_7841123789">7841123789</string>
+    <string name="dataEntrega">31/12/2021</string>
+    <string name="autoras">Feito por Camilly Antunes e Julia Badin</string>
 
     <string-array name="procedimentos">
         <item>Limpeza de Pele</item>
