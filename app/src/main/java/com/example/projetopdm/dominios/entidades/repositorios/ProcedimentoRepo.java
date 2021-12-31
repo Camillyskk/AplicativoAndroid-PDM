@@ -69,8 +69,23 @@ public class ProcedimentoRepo {
 
             } while (resultado.moveToNext());
         }
-        return null;
+        return procedimentos;
     }
+
+    public List<String> spinnerProcedimentos() {
+
+        List<String> procedimentos = new ArrayList<String>();
+
+        Cursor resultado = conexao.rawQuery("SELECT Nome FROM Procedimento", null);
+        resultado.moveToFirst();
+
+        do {
+            procedimentos.add(resultado.getString(resultado.getColumnIndexOrThrow("Nome")));
+        } while (resultado.moveToNext());
+
+        return procedimentos;
+    }
+
 
     public Procedimento buscarProcedimento(int id){
 

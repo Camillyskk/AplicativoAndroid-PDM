@@ -20,7 +20,6 @@ import android.widget.LinearLayout;
 import com.example.projetopdm.database.DadosOpenHelper;
 import com.example.projetopdm.dominios.entidades.Usuarios;
 import com.example.projetopdm.dominios.entidades.repositorios.UsuarioRepo;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -56,7 +55,7 @@ public class CadastroActivity extends AppCompatActivity {
         et_dataNasc = findViewById(R.id.dataNasc);
         et_RG = findViewById(R.id.rg);
         et_CPF = findViewById(R.id.cpf);
-        et_senha = findViewById(R.id.senha);
+        et_senha = findViewById(R.id.valor);
 
         cadastrar = findViewById(R.id.cadastrar);
         login = findViewById(R.id.bt_login);

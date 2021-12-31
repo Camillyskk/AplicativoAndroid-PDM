@@ -42,7 +42,7 @@ public class UsuarioActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Fragment fragment = null;
                 switch (item.getItemId()){
-                    case profile_item:
+                    case R.id.profile_item:
                         fragment = new ProfileFragment();
                         break;
 

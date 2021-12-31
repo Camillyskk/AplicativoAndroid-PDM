@@ -21,7 +21,7 @@ public class AgendamentoRepo {
         ContentValues contentValues = new ContentValues();
         contentValues.put("Dia", agendamento.dia);
         contentValues.put("Hora", agendamento.hora);
-        contentValues.put("Usuarioss_ID", agendamento.usuarios_id);
+        contentValues.put("Usuarios_ID", agendamento.usuarios_id);
         contentValues.put("Procedimento_ID", agendamento.procedimento_id);
 
         conexao.insertOrThrow("Agendamento", "ID", contentValues);
@@ -55,17 +55,16 @@ public class AgendamentoRepo {
 
         StringBuilder sql = new StringBuilder();
 
-        sql.append("SELECT Dia, Hora, Usuarios_ID, Procedimento_ID ");
+        sql.append("SELECT ID, Dia, Hora, Usuarios_ID, Procedimento_ID ");
         sql.append("FROM Agendamento ");
 
         Cursor resultado = conexao.rawQuery(sql.toString(), null);
 
         if (resultado.getCount() > 0){
             resultado.moveToFirst();
+            Agendamento agendamento = new Agendamento();
 
             do {
-                Agendamento agendamento = new Agendamento();
-
                 agendamento.ID = resultado.getInt(resultado.getColumnIndexOrThrow("ID"));
                 agendamento.usuarios_id = resultado.getInt(resultado.getColumnIndexOrThrow("Usuarios_ID"));
                 agendamento.procedimento_id = resultado.getInt(resultado.getColumnIndexOrThrow("Procedimento_ID"));
@@ -76,7 +75,7 @@ public class AgendamentoRepo {
 
             } while (resultado.moveToNext());
         }
-        return null;
+        return agendamentos;
     }
 
     public Agendamento buscarAgendamento(int id){
@@ -97,6 +96,26 @@ public class AgendamentoRepo {
 
             resultado.moveToFirst();
 
+            agendamento.ID = resultado.getInt(resultado.getColumnIndexOrThrow("ID"));
+            agendamento.usuarios_id = resultado.getInt(resultado.getColumnIndexOrThrow("Usuarios_ID"));
+            agendamento.procedimento_id = resultado.getInt(resultado.getColumnIndexOrThrow("Procedimento_ID"));
+            agendamento.dia = resultado.getString(resultado.getColumnIndexOrThrow("Dia"));
+            agendamento.hora = resultado.getString(resultado.getColumnIndexOrThrow("Hora"));
+
+            return agendamento;
+        }
+        return null;
+    }
+    public Agendamento buscarUltimoAgendamento(int id){
+
+        Agendamento agendamento = new Agendamento();
+
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT * FROM Agendamento ORDER BY ID DESC");
+
+        Cursor resultado = conexao.rawQuery(sql.toString(), null);
+
+        if (resultado.moveToFirst()) {
             agendamento.ID = resultado.getInt(resultado.getColumnIndexOrThrow("ID"));
             agendamento.usuarios_id = resultado.getInt(resultado.getColumnIndexOrThrow("Usuarios_ID"));
             agendamento.procedimento_id = resultado.getInt(resultado.getColumnIndexOrThrow("Procedimento_ID"));

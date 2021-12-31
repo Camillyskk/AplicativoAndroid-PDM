@@ -1,33 +1,28 @@
 package com.example.projetopdm.utilidadesadaptador;
 
-import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projetopdm.R;
-import com.example.projetopdm.dominios.entidades.Agendamento;
+import com.example.projetopdm.dominios.entidades.Procedimento;
 import com.example.projetopdm.dominios.entidades.Procedimento;
 
-import java.text.NumberFormat;
 import java.util.List;
 
-public class AdaptadorRecyclerViewHorarios extends RecyclerView.Adapter<HolderModeloDeLinhaHorario> {
+public class AdapterProcedimentos extends RecyclerView.Adapter<HolderModeloDeLinhaHorario> {
 
 
+    public final List<Procedimento> dados;
 
-    public final List<Agendamento> dados;
-
-    public AdaptadorRecyclerViewHorarios(List<Agendamento> dados) {
+    public AdapterProcedimentos(List<Procedimento> dados) {
         this.dados = dados;
     }
 
 
-    public void adicionarAgendamento(Agendamento agendamento){
-        dados.add(agendamento);
+    public void adicionarProcedimento(Procedimento procedimento){
+        dados.add(procedimento);
         notifyItemInserted(getItemCount());
     }
 
@@ -35,7 +30,7 @@ public class AdaptadorRecyclerViewHorarios extends RecyclerView.Adapter<HolderMo
     /*private Context ativityEmExecucao; // (Opcional) Usado em métodos para acesso a tela
 
     // usado para adicionar e remover dados
-    public List<Agendamento> getDados() {
+    public List<Procedimento> getDados() {
         return dados;
     }
 

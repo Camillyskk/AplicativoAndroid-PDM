@@ -172,7 +172,7 @@
                 app:layout_constraintTop_toTopOf="@id/rg" />
 
             <EditText
-                android:id="@+id/senha"
+                android:id="@+id/valor"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="72dp"
@@ -197,7 +197,7 @@
                 android:textSize="16sp"
                 app:backgroundTint="@color/orange"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="@id/senha" />
+                app:layout_constraintTop_toTopOf="@id/valor" />
 
             <Button
                 android:id="@+id/button"

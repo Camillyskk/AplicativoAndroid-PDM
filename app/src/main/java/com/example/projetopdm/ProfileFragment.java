@@ -22,7 +22,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,11 +29,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.projetopdm.clinica.Agenda;
 import com.example.projetopdm.database.DadosOpenHelper;
 import com.example.projetopdm.dominios.entidades.Usuarios;
 import com.example.projetopdm.dominios.entidades.repositorios.UsuarioRepo;
-import com.example.projetopdm.usuarios.Usuario;
 
 public class ProfileFragment extends Fragment {
 
@@ -80,8 +77,7 @@ public class ProfileFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
 
@@ -94,25 +90,13 @@ public class ProfileFragment extends Fragment {
         et_dataNasc = v.findViewById(R.id.dataNasc);
         et_RG = v.findViewById(R.id.rg);
         et_CPF = v.findViewById(R.id.cpf);
-        et_senha = v.findViewById(R.id.senha);
+        et_senha = v.findViewById(R.id.valor);
 
         bt_atualizar = v.findViewById(R.id.atualizar);
         bt_sair = v.findViewById(R.id.bt_sair);
         bt_deletar = v.findViewById(R.id.bt_deletar);
 
-
-        /*Log.d("ID: ", toString().valueOf(usuarioatual.ID));
-        Log.d("Cidade: ", usuarioatual.cidade.toString());
-        Log.d("Nome: ", usuarioatual.nome.toString());
-        Log.d("Sobrenome: ", usuarioatual.sobrenome.toString());
-        Log.d("CPF: ", usuarioatual.CPF.toString());
-        Log.d("RG: ", usuarioatual.RG.toString());
-        Log.d("Telefone: ", usuarioatual.telefone.toString());
-        Log.d("Nascimento: ", usuarioatual.nascimento.toString());
-        Log.d("Email: ", usuarioatual.email.toString());
-        Log.d("Senha: ", usuarioatual.senha.toString());*/
-
-
+        //puxa dados do banco
         et_nome.setText(usuarioatual.nome.toString());
         et_sobrenome.setText(usuarioatual.sobrenome.toString());
         et_email.setText(usuarioatual.email.toString());
@@ -123,8 +107,6 @@ public class ProfileFragment extends Fragment {
         et_RG.setText(usuarioatual.RG.toString());
         et_senha.setText(usuarioatual.senha.toString());
 
-
-        //Desabilitar os EditTexts
         //desabilitarEditTexts(); //se deixar ativado dá erro
 
         bt_atualizar.setOnClickListener(new View.OnClickListener() {
@@ -160,11 +142,11 @@ public class ProfileFragment extends Fragment {
         bt_sair.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                usuarioatual = null;
                 Intent i = new Intent(getActivity(), MainActivity.class); //volta pro login
                 startActivity(i);
             }
         });
-
 
         //chama o metodo mas nao aparece o builder
         bt_deletar.setOnClickListener(new View.OnClickListener() {
@@ -192,20 +174,6 @@ public class ProfileFragment extends Fragment {
         });
 
         return v;
-    }
-
-    public void setInfoProfile(Usuario usuario){
-        int posicao = 0;
-        for(Usuario usuarioProcurado : Agenda.usuarios){
-            if(usuarioProcurado.getEmail() == usuario.getEmail()){
-                posicao = Agenda.usuarios.indexOf(usuario);
-            }
-        }
-        et_email.setText(Agenda.usuarios.get(posicao).getEmail());
-        et_senha.setText(Agenda.usuarios.get(posicao).getSenha());
-        et_telefone.setText(Agenda.usuarios.get(posicao).getTelefone());
-        et_cidade.setText(Agenda.usuarios.get(posicao).getCidade());
-        //ajustar pra puxar os dados do banco
     }
 
     public void habilitarEditTexts(){

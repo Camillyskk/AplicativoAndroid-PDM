@@ -1,7 +1,10 @@
 package com.example.projetopdm;
 
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -10,7 +13,13 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.example.projetopdm.database.DadosOpenHelper;
+import com.example.projetopdm.dominios.entidades.Agendamento;
 import com.example.projetopdm.dominios.entidades.Procedimento;
+import com.example.projetopdm.dominios.entidades.repositorios.AgendamentoRepo;
+import com.example.projetopdm.dominios.entidades.repositorios.ProcedimentoRepo;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,8 +28,13 @@ import com.example.projetopdm.dominios.entidades.Procedimento;
  */
 public class AgendarHorarioFragment extends Fragment {
 
-
     private Procedimento procedimento;
+
+    static SQLiteDatabase conexao;
+    static DadosOpenHelper dadosOpenHelper;
+
+    AgendamentoRepo agendamentoRepo = new AgendamentoRepo(conexao);
+    ProcedimentoRepo procedimentoRepo = new ProcedimentoRepo(conexao);
 
     public void setProcedimento(Procedimento procedimento) {
         this.procedimento = procedimento;
@@ -39,15 +53,6 @@ public class AgendarHorarioFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment AgendarHorarioFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static AgendarHorarioFragment newInstance(String param1, String param2) {
         AgendarHorarioFragment fragment = new AgendarHorarioFragment();
         Bundle args = new Bundle();
@@ -59,6 +64,7 @@ public class AgendarHorarioFragment extends Fragment {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        criarConexao();
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -66,6 +72,15 @@ public class AgendarHorarioFragment extends Fragment {
 
         };
 
+
+    public void preencheSpinner(Procedimento procedimento){
+        String nome = procedimento.nome;
+
+        List<Procedimento> lista = procedimentoRepo.buscarProcedimentos();
+
+        //ArrayAdapter<String> adapter_spinner = ArrayAdapter.createFromResource(getContext(), lista, R.layout.spinner_item);
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -75,19 +90,39 @@ public class AgendarHorarioFragment extends Fragment {
 
         //spinner lista procedimentos
         Spinner spinner = (Spinner) v.findViewById(R.id.select_procedimento);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.procedimentos, R.layout.spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        spinner.setAdapter(adapter);
+        //ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.procedimentos, R.layout.spinner_item);
+        ArrayAdapter spinner_adapter = new ArrayAdapter<>(getContext(), R.layout.spinner_item, procedimentoRepo.spinnerProcedimentos());
+        spinner_adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        spinner.setAdapter(spinner_adapter);
 
         //spinner lista horarios
         Spinner spinner2 = (Spinner) v.findViewById(R.id.select_horario);
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(getContext(), R.array.horarios, R.layout.spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spinner2.setAdapter(adapter2);
 
         return v;
     }
 
 
+    public void criarConexao() {
+        try {
+            dadosOpenHelper = new DadosOpenHelper(getActivity());
+
+            conexao = dadosOpenHelper.getWritableDatabase();
+
+            //Snackbar.make(activity_main, R.string.message_conexao_ok, Snackbar.LENGTH_LONG).setAction(R.string.message_ok, null).show();
+
+            agendamentoRepo = new AgendamentoRepo(conexao);
+            procedimentoRepo = new ProcedimentoRepo(conexao);
+
+        } catch (SQLException ex) {
+            androidx.appcompat.app.AlertDialog.Builder dlg = new AlertDialog.Builder(getActivity());
+            dlg.setTitle(R.string.message_erro);
+            dlg.setMessage(ex.getMessage());
+            dlg.setNeutralButton(R.string.message_ok, null);
+            dlg.show();
+        }
+    }
 
 }

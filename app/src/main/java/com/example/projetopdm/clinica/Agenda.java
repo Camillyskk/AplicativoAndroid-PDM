@@ -28,22 +28,4 @@ public class Agenda extends Horario {
     }
 
 
-    public static Usuario autenticarUsuario(Usuario usu) {
-        ///  carregar lista de usuários
-
-
-
-
-        carregarUsuariosDoBanco();
-
-        for (Usuario usuarioProcurado : usuarios) {
-            Log.d("TESTE","LA: "+usuarioProcurado.getEmail()+usuarioProcurado.getSenha());
-            Log.d("TESTE","LB: "+usu.getEmail()+usu.getSenha());
-            if (usuarioProcurado.getEmail().equals(usu.getEmail()) && usuarioProcurado.getSenha().equals(usu.getSenha())) {
-                return usuarioProcurado;
-            }
-        }
-        return null;
-    }
-
 }

@@ -58,7 +58,7 @@ public class TesteAdapter extends RecyclerView.Adapter<TesteAdapter.ViewHolderTe
             super(itemView);
 
             rvemail = itemView.findViewById(R.id.email);
-            rvsenha = itemView.findViewById(R.id.senha);
+            rvsenha = itemView.findViewById(R.id.valor);
 
         }
     }

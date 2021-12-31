@@ -7,56 +7,82 @@
 
     <EditText
         android:id="@+id/nome_procedimento"
-        android:layout_width="0dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
         android:background="@android:color/transparent"
-        android:text="Esfoliacao"
+        android:minHeight="48dp"
+        android:text="Maquiagem"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/imageViewExcluir"
+        app:layout_constraintEnd_toStartOf="@id/valor"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/senha"
-        android:layout_width="0dp"
+        android:id="@+id/valor"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/nome_procedimento"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp"
         android:background="@android:color/transparent"
+        android:minHeight="48dp"
         android:text="R$ 25,00"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/nome_procedimento"
-        app:layout_constraintStart_toStartOf="@+id/nome_procedimento"
-        app:layout_constraintTop_toBottomOf="@+id/nome_procedimento" />
+        app:layout_constraintEnd_toStartOf="@id/iconeEditar"
+        app:layout_constraintTop_toTopOf="@id/nome_procedimento" />
 
-    <ImageView
-        android:id="@+id/imageViewEditar"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/data"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/nome_procedimento"
-        android:layout_alignParentRight="true"
-        android:src="@drawable/delete"
-        app:layout_constraintBottom_toBottomOf="@+id/senha"
-        app:layout_constraintEnd_toEndOf="@+id/imageViewExcluir"
-        app:layout_constraintTop_toTopOf="@+id/senha" />
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="48dp"
+        android:background="@android:color/transparent"
+        android:minHeight="48dp"
+        android:text="10/08/2021"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@id/hora"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/nome_procedimento" />
+
+    <EditText
+        android:id="@+id/hora"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:background="@android:color/transparent"
+        android:minHeight="48dp"
+        android:text="15:30"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/iconeExcluir"
+        app:layout_constraintTop_toBottomOf="@id/valor" />
 
     <ImageView
-        android:id="@+id/imageViewExcluir"
+        android:id="@+id/iconeEditar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginEnd="32dp"
+        android:minHeight="48dp"
         android:src="@drawable/edit"
         app:layout_constraintBottom_toBottomOf="@+id/nome_procedimento"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/nome_procedimento" />
+
+    <ImageView
+        android:id="@+id/iconeExcluir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nome_procedimento"
+        android:layout_alignParentRight="true"
+        android:minHeight="48dp"
+        android:src="@drawable/delete"
+        app:layout_constraintBottom_toBottomOf="@id/hora"
+        app:layout_constraintEnd_toEndOf="@+id/iconeEditar" />
 </androidx.constraintlayout.widget.ConstraintLayout>

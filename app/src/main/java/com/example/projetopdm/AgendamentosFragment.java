@@ -1,9 +1,12 @@
 package com.example.projetopdm;
 
-import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,7 +18,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.projetopdm.database.DadosOpenHelper;
 import com.example.projetopdm.dominios.entidades.Procedimento;
+import com.example.projetopdm.dominios.entidades.repositorios.AgendamentoRepo;
+import com.example.projetopdm.dominios.entidades.repositorios.UsuarioRepo;
 import com.example.projetopdm.utilidadesadaptador.AdaptadorRecyclerViewHorarios;
 import com.example.projetopdm.utilidadesadaptador.MeuEventoDeClickDaLista;
 
@@ -26,16 +32,21 @@ import com.example.projetopdm.utilidadesadaptador.MeuEventoDeClickDaLista;
 public class AgendamentosFragment extends Fragment {
     Button agendar_horario;
 
-    // Declarações relacionadas com o RecyclerCiew
-    private RecyclerView recyclerView;
-    private AdaptadorRecyclerViewHorarios adaptador;
+    static SQLiteDatabase conexao;
+    static DadosOpenHelper dadosOpenHelper;
 
+    AgendamentoRepo agendamentoRepo = new AgendamentoRepo(conexao);
+
+    // Declarações relacionadas com o RecyclerCiew
+    RecyclerView recyclerView;
+    AdaptadorRecyclerViewHorarios adaptador;
+    View view;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        criarConexao();
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_agendamentos, container, false);
+        view = inflater.inflate(R.layout.fragment_agendamentos, container, false);
 
         agendar_horario = view.findViewById(R.id.criar_agendamento);
 
@@ -47,6 +58,7 @@ public class AgendamentosFragment extends Fragment {
             }
         });
 
+        /*
         // vincular objetos
         recyclerView = view.findViewById(R.id.lstDados);
 
@@ -72,9 +84,9 @@ public class AgendamentosFragment extends Fragment {
                         .beginTransaction()
                         .replace(R.id.activity_usuario, fragment).commit();
             }
-        });
+        });*/
 
-        adaptador.setEventoClicarNoIconeDeletar(new MeuEventoDeClickDaLista<Procedimento>() {
+        /*adaptador.setEventoClicarNoIconeDeletar(new MeuEventoDeClickDaLista<Procedimento>() {
             @Override
             public void onItemClick(Procedimento conteudoDaLinha) {
                 // Cria mensagem de alerta
@@ -100,52 +112,49 @@ public class AgendamentosFragment extends Fragment {
                 // exibe o Alerta na tela
                 builder.show();
             }
-        });
+        });*/
 
+        configurarRecycler();
+
+        /*
+        Intent i = new Intent(getActivity().getBaseContext(), UsuarioActivity.class);
+        getSupportFragmentManager().beginTransaction().replace(R.id.activity_usuario, new AgendamentosFragment()).commit();
+        */
 
         return view;
     }
 
-    private void listarDados() {
-        /*adaptador.getDados().clear();
 
-        Procedimento p = new Procedimento();
-        p.nome = "Massagem";
-        p.valor = 4.85;
-        //adaptador.getDados().addAll()
-        adaptador.getDados().add(p);
 
-         p = new Procedimento();
-        p.nome = "Massagem";
-        p.valor = 4.85;
-        //adaptador.getDados().addAll()
-        adaptador.getDados().add(p);
-        p = new Procedimento();
-        p.nome = "Massagem";
-        p.valor = 4.85;
-        //adaptador.getDados().addAll()
-        adaptador.getDados().add(p); p = new Procedimento();
-        p.nome = "Massagem";
-        p.valor = 4.85;
-        //adaptador.getDados().addAll()
-        adaptador.getDados().add(p); p = new Procedimento();
-        p.nome = "Massagem";
-        p.valor = 4.85;
-        //adaptador.getDados().addAll()
-        adaptador.getDados().add(p); p = new Procedimento();
-        p.nome = "Massagem";
-        p.valor = 4.85;
-        //adaptador.getDados().addAll()
-        adaptador.getDados().add(p);
+    void configurarRecycler(){
+        // Configurando o gerenciador de layout para ser uma lista.
+        recyclerView = view.findViewById(R.id.lstDados);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getBaseContext());
+        recyclerView.setLayoutManager(layoutManager);
 
-        adaptador.notifyDataSetChanged();*/
+        // Adiciona o adapter que irá anexar os objetos à lista.
+        AgendamentoRepo agendamentoRepo = new AgendamentoRepo(conexao);
+        adaptador = new AdaptadorRecyclerViewHorarios(agendamentoRepo.buscarAgendamentos());
+        recyclerView.setAdapter(adaptador);
+        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity().getBaseContext(), DividerItemDecoration.VERTICAL));
     }
 
+    public void criarConexao() {
+        try {
+            dadosOpenHelper = new DadosOpenHelper(getActivity());
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        // adiciona dados
-        listarDados();
+            conexao = dadosOpenHelper.getWritableDatabase();
+
+            //Snackbar.make(activity_main, R.string.message_conexao_ok, Snackbar.LENGTH_LONG).setAction(R.string.message_ok, null).show();
+
+            agendamentoRepo = new AgendamentoRepo(conexao);
+
+        } catch (SQLException ex) {
+            androidx.appcompat.app.AlertDialog.Builder dlg = new AlertDialog.Builder(getActivity());
+            dlg.setTitle(R.string.message_erro);
+            dlg.setMessage(ex.getMessage());
+            dlg.setNeutralButton(R.string.message_ok, null);
+            dlg.show();
+        }
     }
 }

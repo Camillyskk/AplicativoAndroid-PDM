@@ -4,30 +4,18 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import android.content.ContentResolver;
-import android.content.Context;
 import android.content.Intent;
-import android.database.CharArrayBuffer;
-import android.database.ContentObserver;
-import android.database.Cursor;
-import android.database.DataSetObserver;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.projetopdm.database.Conexao;
 import com.example.projetopdm.database.DadosOpenHelper;
-import com.example.projetopdm.dominios.entidades.Procedimento;
 import com.example.projetopdm.dominios.entidades.Usuarios;
-import com.example.projetopdm.dominios.entidades.repositorios.ProcedimentoRepo;
 import com.example.projetopdm.dominios.entidades.repositorios.UsuarioRepo;
-import com.google.android.material.snackbar.Snackbar;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -57,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         bt_cadastrar = findViewById(R.id.bt_cadastro);
 
         et_email = findViewById(R.id.email);
-        et_senha = findViewById(R.id.senha);
+        et_senha = findViewById(R.id.valor);
 
         bt_entrar.setOnClickListener(new View.OnClickListener() {
             @Override
