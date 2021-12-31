@@ -107,7 +107,7 @@ public class AgendamentosFragment extends Fragment {
     }
 
     private void listarDados() {
-        adaptador.getDados().clear();
+        /*adaptador.getDados().clear();
 
         Procedimento p = new Procedimento();
         p.nome = "Massagem";
@@ -138,7 +138,7 @@ public class AgendamentosFragment extends Fragment {
         //adaptador.getDados().addAll()
         adaptador.getDados().add(p);
 
-        adaptador.notifyDataSetChanged();
+        adaptador.notifyDataSetChanged();*/
     }
 
 

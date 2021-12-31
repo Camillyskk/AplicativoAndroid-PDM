@@ -1,7 +1,7 @@
 package com.example.projetopdm.usuarios;
 
 import com.example.projetopdm.clinica.Agenda;
-import com.example.projetopdm.clinica.Agendamento;
+import com.example.projetopdm.clinica.Agendamentos;
 
 import java.util.ArrayList;
 
@@ -15,7 +15,7 @@ public class Usuario {
     String dataNascimento;
     String rg;
     String cpf;
-    public ArrayList <Agendamento> agendamentos = new ArrayList<>();
+    public ArrayList <Agendamentos> agendamentos = new ArrayList<>();
 
     public static void cadastrar(Usuario usu) {
         Usuario usuario = new Usuario();
@@ -70,7 +70,7 @@ public class Usuario {
         this.cidade = cidade;
     }
 
-    public void setHorario(Agendamento horario) {
+    public void setHorario(Agendamentos horario) {
         this.agendamentos.add(horario);
     }
 
@@ -112,7 +112,7 @@ public class Usuario {
         return cpf;
     }
 
-    public ArrayList<Agendamento> getHorario() {
+    public ArrayList<Agendamentos> getHorario() {
         return agendamentos;
     }
 

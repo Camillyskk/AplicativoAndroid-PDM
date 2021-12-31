@@ -12,7 +12,9 @@ import java.util.List;
 
 public class UsuarioRepo {
 
-    public SQLiteDatabase conexao;
+    public static SQLiteDatabase conexao;
+
+    public UsuarioRepo usuarioRepo;
 
     public UsuarioRepo(SQLiteDatabase conexao){
         this.conexao = conexao;
@@ -91,29 +93,22 @@ public class UsuarioRepo {
                 usuario.email = resultado.getString(resultado.getColumnIndexOrThrow("Email"));
                 usuario.senha = resultado.getString(resultado.getColumnIndexOrThrow("Senha"));
 
-                Log.d("TESTE","ANTES DE ADD");
                 usuarios.add(usuario);
 
             } while (resultado.moveToNext());
 
-            //return usuarios;
         }
-       Log.d("TESTE","ANTES DO RETORNO");
        return null;
    }
 
-   public Usuarios buscarUsuario(String email, String senha){
-
-        //Usuarios usuarios = new Usuarios();
+   public Usuarios buscarUsuario(String email){
 
        StringBuilder sql = new StringBuilder();
-       sql.append("SELECT * FROM Usuarios WHERE Email=? AND Senha=? ");
+       sql.append("SELECT * FROM Usuarios WHERE Email=? ");
 
-       String[] parametros = new String[]{email, senha};
+       String[] parametros = new String[]{email};
 
-       Log.d("TESTE","ANTES CURSOR");
        Cursor resultado = conexao.rawQuery(sql.toString(), parametros);
-       Log.d("TESTE","DEPOIS CURSOR");
 
        Usuarios usuarios = new Usuarios();
 
@@ -136,17 +131,15 @@ public class UsuarioRepo {
     public boolean validaSenha(String senha, String email) {
 
         StringBuilder sql = new StringBuilder();
-        sql.append("SELECT * FROM Usuarios WHERE Email = '" + email + "' AND Senha = '" + senha + "'");
-        //sql.append("SELECT * FROM Usuarios");
+        sql.append("SELECT * FROM Usuarios WHERE Senha=? AND Email=?");
 
         String[] parametros = new String[]{senha, email};
 
-        Cursor resultado = conexao.rawQuery(sql.toString(),null);
-        Log.d("AAAAAAAAAAAAAAAA", String.valueOf(resultado.getCount()));
-        //resultado.moveToFirst();
+        Cursor resultado = conexao.rawQuery(sql.toString(),parametros);
 
         // Retorna se o cursor tem 1 resultado com o email e senha informados
         return resultado != null && resultado.getCount() > 0;
 
     }
+
 }

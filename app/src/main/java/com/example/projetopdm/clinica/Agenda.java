@@ -10,8 +10,8 @@ import java.util.ArrayList;
 public class Agenda extends Horario {
     public static ArrayList<Usuario> usuarios = new ArrayList<>();
     public static ArrayList<Horario> listaHorarios = new ArrayList<>();
-    public static ArrayList<Procedimento> listaProcedimentos = new ArrayList<>();
-    public static ArrayList<Agendamento> agendamentos = new ArrayList<>();
+    public static ArrayList<Procedimentos> listaProcedimentos = new ArrayList<>();
+    public static ArrayList<Agendamentos> agendamentos = new ArrayList<>();
 
     public static void carregarUsuariosDoBanco() {
 //

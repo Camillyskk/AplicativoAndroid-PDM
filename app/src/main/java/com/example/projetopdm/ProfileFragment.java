@@ -10,10 +10,13 @@ import static com.example.projetopdm.CadastroActivity.validarSenha;
 import static com.example.projetopdm.CadastroActivity.validarTelefone;
 
 import android.content.Intent;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 
@@ -24,7 +27,10 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.projetopdm.clinica.Agenda;
+import com.example.projetopdm.database.DadosOpenHelper;
+import com.example.projetopdm.dominios.entidades.repositorios.UsuarioRepo;
 import com.example.projetopdm.usuarios.Usuario;
+import com.google.android.material.snackbar.Snackbar;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,6 +41,9 @@ public class ProfileFragment extends Fragment {
 
     EditText et_nome, et_sobrenome, et_email, et_telefone, et_cidade, et_dataNasc, et_RG, et_CPF, et_senha;
     Button bt_atualizar, bt_sair;
+
+
+    UsuarioRepo usuarioRepo;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -97,13 +106,31 @@ public class ProfileFragment extends Fragment {
         bt_sair = v.findViewById(R.id.bt_sair);
 
         //Desabilitar os EditTexts
-        desabilitarEditTexts();
+        //desabilitarEditTexts();
+
+        /*
+            et_cidade.setText(usuarioatual.cidade);
+            et_nome.setText(usuarioatual.nome);
+            et_sobrenome.setText(usuarioatual.sobrenome);
+            et_CPF.setText(usuarioatual.CPF);
+            et_RG.setText(usuarioatual.RG);
+            et_dataNasc.setText(usuarioatual.nascimento);
+            et_email.setText(usuarioatual.email);
+            et_senha.setText(usuarioatual.senha);
+         */
+
 
         bt_atualizar.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
 //                puxar dados do banco e colocar no text dos editText
+
+                /*
+                usuarioRepo.alterar(usuarioatual);
+                */
+
+
                 if(et_email.isEnabled()){
                    if(isDadosValidos()) {
                     desabilitarEditTexts();
@@ -180,5 +207,6 @@ public class ProfileFragment extends Fragment {
         }
         return false;
     }
+
 
 }

@@ -81,6 +81,7 @@ public class ProcedimentoRepo {
         sql.append("FROM Procedimento ");
         sql.append("WHERE ID = ?");
 
+
         String[] parametros = new String[1];
         parametros[0] = String.valueOf(id);
 

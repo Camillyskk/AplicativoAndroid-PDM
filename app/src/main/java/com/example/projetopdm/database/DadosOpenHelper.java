@@ -17,6 +17,7 @@ public class DadosOpenHelper extends SQLiteOpenHelper {
         db.execSQL(ScriptDLL.getCreateTableUsuarios());
         db.execSQL(ScriptDLL.getCreateTableProcedimento());
         db.execSQL(ScriptDLL.getCreateTableAgendamento());
+        //db.execSQL(ScriptDLL.getInsertTableProcedimento());
 
     }
 

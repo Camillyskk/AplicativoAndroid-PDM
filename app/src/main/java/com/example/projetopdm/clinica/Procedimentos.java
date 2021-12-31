@@ -1,6 +1,6 @@
 package com.example.projetopdm.clinica;
 
-public class Procedimento {
+public class Procedimentos {
     public String nome;
     public Integer duracao;
     public Double valor;

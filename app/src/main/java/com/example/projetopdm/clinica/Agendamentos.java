@@ -1,11 +1,11 @@
 package com.example.projetopdm.clinica;
 
 
-public class Agendamento {
+public class Agendamentos {
     public String horario;
     public String data;
 //    public Cliente cliente;
-    public Procedimento procedimento;
+    public Procedimentos procedimentos;
 
 //    public static ArrayList<Agendamento> agendamentos = new ArrayList<>();
 
