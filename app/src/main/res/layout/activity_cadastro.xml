@@ -7,43 +7,40 @@
     tools:context=".CadastroActivity">
 
     <LinearLayout
+        android:id="@+id/activity_cadastro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingTop="40dp"
-        android:paddingBottom="30dp"
-        >
+        android:paddingBottom="30dp">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="80dp"
-    tools:ignore="Suspicious0dp"
-    android:gravity="center_vertical"
-    >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:gravity="center_vertical"
+            tools:ignore="Suspicious0dp">
 
-    <TextView
-        android:layout_width="109dp"
-        android:layout_height="60dp"
-        android:layout_weight="1"
-        android:text="@string/cadastro"
-        android:textColor="@color/black"
-        android:textSize="34sp"
-        android:textAlignment="textEnd"
-        >
-    </TextView>
+            <TextView
+                android:layout_width="109dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="@string/cadastro"
+                android:textAlignment="textEnd"
+                android:textColor="@color/black"
+                android:textSize="34sp"></TextView>
 
-    <Button
-        android:id="@+id/bt_login"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-        android:layout_weight="1"
-        android:background="#00000000"
-        android:text="@string/login"
-        android:textColor="@color/green"
-        tools:ignore="TextContrastCheck" />
+            <Button
+                android:id="@+id/bt_login"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="#00000000"
+                android:text="@string/login"
+                android:textColor="@color/green"
+                tools:ignore="TextContrastCheck" />
 
-</LinearLayout>
+        </LinearLayout>
 
         <EditText
             android:id="@+id/nome"
@@ -78,7 +75,7 @@
             tools:ignore="TextContrastCheck" />
 
         <EditText
-            android:id="@+id/email"
+            android:id="@+id/rvemail"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginStart="12dp"
@@ -174,7 +171,7 @@
             tools:ignore="TextContrastCheck" />
 
         <EditText
-            android:id="@+id/senha"
+            android:id="@+id/rvsenha"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginStart="12dp"
@@ -193,11 +190,11 @@
             android:id="@+id/cadastrar"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="30dp"
+            android:layout_marginEnd="20dp"
             android:background="@drawable/custom_button"
             android:backgroundTint="@color/green"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="20dp"
             android:text="@string/cadastrar"
             tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
 

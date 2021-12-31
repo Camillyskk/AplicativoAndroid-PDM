@@ -43,7 +43,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view3" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView2"
+        android:id="@+id/lstDados"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"

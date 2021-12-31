@@ -4,14 +4,15 @@ import static com.example.projetopdm.R.id.profile_item;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class UsuarioActivity extends AppCompatActivity {
+
     BottomNavigationView navigationView;
 
     @Override
@@ -20,7 +21,7 @@ public class UsuarioActivity extends AppCompatActivity {
         setContentView(R.layout.activity_usuario);
 
         //iniciar na fragment profile
-        getSupportFragmentManager().beginTransaction().replace(R.id.body_container, new ProfileFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.activity_usuario, new ProfileFragment()).commit();
 
         navigationView = findViewById(R.id.bottomNavigation);
 
@@ -46,7 +47,7 @@ public class UsuarioActivity extends AppCompatActivity {
                         break;
                 }
 
-                getSupportFragmentManager().beginTransaction().replace(R.id.body_container, fragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.activity_usuario, fragment).commit();
 //                navigationView.setSelectedItemId(profile_item); //tava comentado, se der tilt, comenta de novo
 
                 return true;
@@ -54,5 +55,4 @@ public class UsuarioActivity extends AppCompatActivity {
         });
 
     }
-
 }

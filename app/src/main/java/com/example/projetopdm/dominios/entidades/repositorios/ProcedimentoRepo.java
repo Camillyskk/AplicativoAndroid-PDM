@@ -77,7 +77,7 @@ public class ProcedimentoRepo {
         Procedimento procedimento = new Procedimento();
 
         StringBuilder sql = new StringBuilder();
-        sql.append("SELECET Nome, Valor ");
+        sql.append("SELECT Nome, Valor ");
         sql.append("FROM Procedimento ");
         sql.append("WHERE ID = ?");
 
