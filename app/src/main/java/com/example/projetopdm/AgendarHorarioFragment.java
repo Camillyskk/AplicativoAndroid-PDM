@@ -1,5 +1,6 @@
 package com.example.projetopdm;
 
+import android.content.Intent;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
@@ -48,6 +49,8 @@ public class AgendarHorarioFragment extends Fragment {
 
     private Session session;
 
+    Agendamento agendamentoEditado = null;
+
     public void setProcedimento(Procedimento procedimento) {
         this.procedimento = procedimento;
     }
@@ -74,16 +77,32 @@ public class AgendarHorarioFragment extends Fragment {
         super.onCreate(savedInstanceState);
         criarConexao();
         session = new Session(getContext());
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_agendar_horario, container, false);
+
+        //verifica se começou agora ou se veio de uma edição
+
+        /*Intent intent = getActivity().getIntent();
+        Bundle bundle = intent.getExtras();
+        if(intent.hasExtra("agendamento")){
+            agendamentoEditado = (Agendamento) bundle.getSerializable("agendamento");
+            Spinner procedimento = v.findViewById(R.id.select_procedimento);
+            EditText select_data = v.findViewById(R.id.select_data);
+            Spinner select_horario = v.findViewById(R.id.select_horario);
+
+            //seta os valores pra edição com o agendamento já existente
+            select_data.setText(agendamentoEditado.dia);
+            procedimento.setSelection(getIndex(select_horario, agendamentoEditado.procedimento));
+            select_horario.setSelection(getIndex(select_horario, agendamentoEditado.hora));
+        }*/
 
         //spinner lista procedimentos
         Spinner spinner = (Spinner) v.findViewById(R.id.select_procedimento);
@@ -105,7 +124,9 @@ public class AgendarHorarioFragment extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
-
+                if (agendamentoEditado != null){
+                    agendamentoRepo.alterar(agendamentoEditado);
+                }
                 if (validarDataNasc(select_data)){
                     Agendamento agendamento = new Agendamento();
                     Procedimento procedimento = new Procedimento();

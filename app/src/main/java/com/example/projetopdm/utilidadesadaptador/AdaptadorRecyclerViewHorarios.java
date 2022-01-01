@@ -1,27 +1,30 @@
 package com.example.projetopdm.utilidadesadaptador;
 
+import static android.app.PendingIntent.getActivity;
 import static java.security.AccessController.getContext;
 import static java.text.NumberFormat.getCurrencyInstance;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
-import android.database.SQLException;
+import android.content.ContextWrapper;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.projetopdm.AgendamentosFragment;
+import com.example.projetopdm.AgendarHorarioFragment;
 import com.example.projetopdm.R;
-import com.example.projetopdm.database.DadosOpenHelper;
+import com.example.projetopdm.database.Conexao;
 import com.example.projetopdm.dominios.entidades.Agendamento;
-import com.example.projetopdm.dominios.entidades.Procedimento;
 import com.example.projetopdm.dominios.entidades.repositorios.AgendamentoRepo;
-import com.example.projetopdm.dominios.entidades.repositorios.ProcedimentoRepo;
 
 import java.text.NumberFormat;
 import java.util.List;
@@ -30,16 +33,13 @@ public class AdaptadorRecyclerViewHorarios extends RecyclerView.Adapter<HolderMo
 
     public final List<Agendamento> dados;
 
-    public AdaptadorRecyclerViewHorarios(List<Agendamento> dados) {
+    static SQLiteDatabase conexao;
+    AgendamentoRepo agendamentoRepo;
+
+    public AdaptadorRecyclerViewHorarios(List<Agendamento> dados, SQLiteDatabase conexao) {
         this.dados = dados;
+        this.conexao = conexao;
     }
-
-
-    public void adicionarAgendamento(Agendamento agendamento){
-        dados.add(agendamento);
-        notifyItemInserted(getItemCount());
-    }
-
 
     /*private Context ativityEmExecucao; // (Opcional) Usado em métodos para acesso a tela
 
@@ -71,6 +71,8 @@ public class AdaptadorRecyclerViewHorarios extends RecyclerView.Adapter<HolderMo
 
         HolderModeloDeLinhaHorario holder = new HolderModeloDeLinhaHorario(view);
 
+        agendamentoRepo = new AgendamentoRepo(conexao);
+
         return holder;
     }
 
@@ -83,11 +85,44 @@ public class AdaptadorRecyclerViewHorarios extends RecyclerView.Adapter<HolderMo
         holder.data.setText(String.valueOf(dados.get(position).dia));
         holder.hora.setText(String.valueOf(dados.get(position).hora));
         holder.valor.setText(String.valueOf(priceFormat.format(dados.get(position).valor)));
+
+        holder.iconeExcluir.setOnClickListener(new ImageView.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Log.d("ID: ", String.valueOf(getItemId(position)));
+                Log.d("AGENDAMENTO: ", String.valueOf(agendamentoRepo.buscarAgendamento((int) getItemId(position)).procedimento));
+                agendamentoRepo.excluir((int) getItemId(position));
+                dados.remove(position);
+                Toast.makeText(v.getContext(), "Registro excluído sucesso!", Toast.LENGTH_SHORT).show();
+                notifyDataSetChanged();
+                //getActivity().getIntent().getSupportFragmentManager().beginTransaction().replace(R.id.activity_usuario, new AgendarHorarioFragment()).commit();
+
+               /*Intent intent = getActivity(v).getIntent();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("agendamento", agendamento);
+                intent.putExtras(bundle);
+                Agendamento agendamentoEditado = (Agendamento) bundle.getSerializable("agendamento");
+                Log.d("ID AGENDAMENTO: ", String.valueOf(agendamentoEditado.ID));
+                */
+                //fragment.setArguments(bundle);
+                //Activity activity = getActivity(v);
+                //Intent intent = activity.getIntent();
+                //intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                //intent.putExtra("agendamento", (Serializable) agendamento);
+                //activity.finish();
+                //activity.startActivity(intent);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return dados != null ? dados.size() : 0;
+    }
+
+    public long getItemId(int position) {
+        return dados.get(position).ID;
     }
 
 }

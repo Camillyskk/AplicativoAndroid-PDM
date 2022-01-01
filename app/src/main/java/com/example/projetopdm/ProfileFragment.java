@@ -150,16 +150,19 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 session.setID(-1);
+                session.setEmail("");
                 Intent i = new Intent(getActivity(), MainActivity.class); //volta pro login
                 startActivity(i);
             }
         });
 
-        //chama o metodo mas nao aparece o builder
+
         bt_deletar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Cria mensagem de alerta
+                // Comentei pq não aparece, acho que é alguma incompatibilidade com o fragment
+
+                /*// Cria mensagem de alerta
                 android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(getContext()); // 2 - Estilo do Alerta
                 builder.setTitle("Exclusão de usuário");
                 builder.setMessage("Você realmente deseja excluir seu registro?");
@@ -173,13 +176,15 @@ public class ProfileFragment extends Fragment {
                         usuarioRepo.excluir(usuarioatual.ID);
                         Toast.makeText(getContext(),"Registro excluído sucesso!", Toast.LENGTH_SHORT).show();
                         session.setID(-1);
+                        session.setEmail("");
                         Intent i = new Intent(getActivity(), MainActivity.class);
                         startActivity(i);
                     }
-                });
+                });*/
                 usuarioRepo.excluir(usuarioatual.ID);
                 Toast.makeText(getContext(),"Registro excluído sucesso!", Toast.LENGTH_SHORT).show();
                 session.setID(-1);
+                session.setEmail("");
                 Intent i = new Intent(getActivity(), MainActivity.class);
                 startActivity(i);
             }

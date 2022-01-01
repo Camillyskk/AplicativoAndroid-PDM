@@ -1,5 +1,6 @@
 package com.example.projetopdm;
 
+import android.content.Intent;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -15,9 +16,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Spinner;
 
 import com.example.projetopdm.database.DadosOpenHelper;
 import com.example.projetopdm.database.Session;
+import com.example.projetopdm.dominios.entidades.Agendamento;
 import com.example.projetopdm.dominios.entidades.Usuarios;
 import com.example.projetopdm.dominios.entidades.repositorios.AgendamentoRepo;
 import com.example.projetopdm.dominios.entidades.repositorios.UsuarioRepo;
@@ -26,13 +31,14 @@ import com.example.projetopdm.utilidadesadaptador.AdaptadorRecyclerViewHorarios;
 public class AgendamentosFragment extends Fragment {
 
     Button agendar_horario;
+    public ImageView iconeExcluir, iconeEditar;
 
     static SQLiteDatabase conexao;
     static DadosOpenHelper dadosOpenHelper;
 
     RecyclerView recyclerView;
     AdaptadorRecyclerViewHorarios adaptador;
-    View view;
+    View v;
 
     AgendamentoRepo agendamentoRepo = new AgendamentoRepo(conexao);
     UsuarioRepo usuarioRepo = new UsuarioRepo(conexao);
@@ -75,9 +81,9 @@ public class AgendamentosFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.fragment_agendamentos, container, false);
+        v = inflater.inflate(R.layout.fragment_agendamentos, container, false);
 
-        agendar_horario = view.findViewById(R.id.criar_agendamento);
+        agendar_horario = v.findViewById(R.id.criar_agendamento);
 
         agendar_horario.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,6 +92,10 @@ public class AgendamentosFragment extends Fragment {
 
             }
         });
+
+        iconeEditar = v.findViewById(R.id.iconeEditar);
+        iconeExcluir = v.findViewById(R.id.iconeExcluir);
+
 
         /// interações
         /*adaptador.setEventoClicarNoIconeEditar(new MeuEventoDeClickDaLista<Procedimento>() {
@@ -131,18 +141,28 @@ public class AgendamentosFragment extends Fragment {
 
 
         // Configuração RecyclerView
-        recyclerView = view.findViewById(R.id.lstDados);
+        recyclerView = v.findViewById(R.id.lstDados);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getBaseContext()));
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
-                DividerItemDecoration.VERTICAL);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
 
         // Valores e Adapter
         AgendamentoRepo agendamentoRepo = new AgendamentoRepo(conexao);
-        adaptador = new AdaptadorRecyclerViewHorarios(agendamentoRepo.buscarAgendamentosUsuario(session.getID()));
+        adaptador = new AdaptadorRecyclerViewHorarios(agendamentoRepo.buscarAgendamentosUsuario(session.getID()), conexao);
         // vincilar adaptador e RecyclerView
         recyclerView.setAdapter(adaptador);
-        return view;
+        return v;
+    }
+
+    private int getIndex(Spinner spinner, String myString) {
+        int index = 0;
+        for (int i = 0; i < spinner.getCount() ; i++){
+            if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(myString)){
+                index = i;
+                break;
+            }
+        }
+        return index;
     }
 
     public void criarConexao() {
