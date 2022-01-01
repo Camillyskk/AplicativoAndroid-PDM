@@ -14,7 +14,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.projetopdm.database.DadosOpenHelper;
+import com.example.projetopdm.dominios.entidades.Procedimento;
 import com.example.projetopdm.dominios.entidades.Usuarios;
+import com.example.projetopdm.dominios.entidades.repositorios.ProcedimentoRepo;
 import com.example.projetopdm.dominios.entidades.repositorios.UsuarioRepo;
 
 
@@ -40,6 +42,38 @@ public class MainActivity extends AppCompatActivity {
         activity_main = (ConstraintLayout) findViewById(R.id.activity_main);
         //deleteDatabase("db_clinica");     //se precisar mudar mais alguma coisa na estrutura
         criarConexao();
+
+        //descomentar na primeira vez rodar o app pra poder inserir os procedimentos
+        /*ProcedimentoRepo procedimentoRepo = new ProcedimentoRepo(conexao);
+        Procedimento procedimento = new Procedimento();
+
+        procedimento.nome = "Massagem";
+        procedimento.valor = 50.00;
+        procedimentoRepo.inserir(procedimento);
+        procedimento.nome = "Pintar o cabelo";
+        procedimento.valor = 80.00;
+        procedimentoRepo.inserir(procedimento);
+        procedimento.nome = "Pintar as unhas";
+        procedimento.valor = 40.00;
+        procedimentoRepo.inserir(procedimento);
+        procedimento.nome = "Esfoliação";
+        procedimento.valor = 35.00;
+        procedimentoRepo.inserir(procedimento);
+        procedimento.nome = "Limpeza de pele";
+        procedimento.valor = 120.00;
+        procedimentoRepo.inserir(procedimento);
+        procedimento.nome = "Maquiagem";
+        procedimento.valor = 65.00;
+        procedimentoRepo.inserir(procedimento);
+        procedimento.nome = "Cortar o cabelo";
+        procedimento.valor = 50.00;
+        procedimentoRepo.inserir(procedimento);
+        procedimento.nome = "Alisamento";
+        procedimento.valor = 250.00;
+        procedimentoRepo.inserir(procedimento);
+        procedimento.nome = "Depilação";
+        procedimento.valor = 70.00;
+        procedimentoRepo.inserir(procedimento);*/
 
         bt_entrar = findViewById(R.id.bt_entrar);
         bt_cadastrar = findViewById(R.id.bt_cadastro);

@@ -27,6 +27,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.projetopdm.database.DadosOpenHelper;
@@ -36,6 +37,7 @@ import com.example.projetopdm.dominios.entidades.repositorios.UsuarioRepo;
 public class ProfileFragment extends Fragment {
 
     EditText et_nome, et_sobrenome, et_email, et_telefone, et_cidade, et_dataNasc, et_RG, et_CPF, et_senha;
+    TextView cabecalho;
     Button bt_atualizar, bt_sair, bt_deletar;
 
     static SQLiteDatabase conexao;
@@ -96,6 +98,8 @@ public class ProfileFragment extends Fragment {
         bt_sair = v.findViewById(R.id.bt_sair);
         bt_deletar = v.findViewById(R.id.bt_deletar);
 
+        cabecalho = v.findViewById(R.id.cabecalho);
+
         //puxa dados do banco
         et_nome.setText(usuarioatual.nome.toString());
         et_sobrenome.setText(usuarioatual.sobrenome.toString());
@@ -107,7 +111,7 @@ public class ProfileFragment extends Fragment {
         et_RG.setText(usuarioatual.RG.toString());
         et_senha.setText(usuarioatual.senha.toString());
 
-        //desabilitarEditTexts(); //se deixar ativado dá erro
+        cabecalho.setText("Bem vindo(a) " + usuarioatual.nome);
 
         bt_atualizar.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)

@@ -40,13 +40,14 @@ android:layout_marginTop="190dp">
         android:textSize="24sp"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="10dp"/>
+
     <Spinner
+        android:id="@+id/select_procedimento"
         android:layout_width="300dp"
-        android:layout_height="40dp"
+        android:layout_height="48dp"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
-        android:id="@+id/select_procedimento"
-        />
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -76,14 +77,13 @@ android:layout_marginTop="190dp">
         android:layout_marginTop="10dp"/>
 
 
-
     <Spinner
+        android:id="@+id/select_horario"
         android:layout_width="300dp"
-        android:layout_height="40dp"
+        android:layout_height="48dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:id="@+id/select_horario"
-        />
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
         android:layout_width="350dp"

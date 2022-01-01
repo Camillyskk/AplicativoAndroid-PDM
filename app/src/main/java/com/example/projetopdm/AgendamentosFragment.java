@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,16 +20,17 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.projetopdm.database.DadosOpenHelper;
+import com.example.projetopdm.dominios.entidades.Agendamento;
 import com.example.projetopdm.dominios.entidades.Procedimento;
 import com.example.projetopdm.dominios.entidades.repositorios.AgendamentoRepo;
 import com.example.projetopdm.dominios.entidades.repositorios.UsuarioRepo;
 import com.example.projetopdm.utilidadesadaptador.AdaptadorRecyclerViewHorarios;
 import com.example.projetopdm.utilidadesadaptador.MeuEventoDeClickDaLista;
+import com.example.projetopdm.utilidadesadaptador.TesteAdapter;
 
-/**
- * A simple {@link Fragment} subclass.
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.List;
+
 public class AgendamentosFragment extends Fragment {
     Button agendar_horario;
 
@@ -37,15 +39,14 @@ public class AgendamentosFragment extends Fragment {
 
     AgendamentoRepo agendamentoRepo = new AgendamentoRepo(conexao);
 
-    // Declarações relacionadas com o RecyclerCiew
     RecyclerView recyclerView;
     AdaptadorRecyclerViewHorarios adaptador;
     View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         criarConexao();
-        // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_agendamentos, container, false);
 
         agendar_horario = view.findViewById(R.id.criar_agendamento);
@@ -58,22 +59,8 @@ public class AgendamentosFragment extends Fragment {
             }
         });
 
-        /*
-        // vincular objetos
-        recyclerView = view.findViewById(R.id.lstDados);
-
-        // configuro o RecyclerView
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
-                DividerItemDecoration.VERTICAL);
-        recyclerView.addItemDecoration(dividerItemDecoration);
-        // Valores e Adapter
-        adaptador = new AdaptadorRecyclerViewHorarios();
-        // vincilar adaptador e RecyclerView
-        recyclerView.setAdapter(adaptador);
-
         /// interações
-        adaptador.setEventoClicarNoIconeEditar(new MeuEventoDeClickDaLista<Procedimento>() {
+        /*adaptador.setEventoClicarNoIconeEditar(new MeuEventoDeClickDaLista<Procedimento>() {
             @Override
             public void onItemClick(Procedimento conteudoDaLinha) {
                 // abre a outra tela para edição
@@ -127,16 +114,16 @@ public class AgendamentosFragment extends Fragment {
 
 
     void configurarRecycler(){
-        // Configurando o gerenciador de layout para ser uma lista.
         recyclerView = view.findViewById(R.id.lstDados);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getBaseContext());
-        recyclerView.setLayoutManager(layoutManager);
-
-        // Adiciona o adapter que irá anexar os objetos à lista.
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getBaseContext()));
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
+                DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(dividerItemDecoration);
+        // Valores e Adapter
         AgendamentoRepo agendamentoRepo = new AgendamentoRepo(conexao);
         adaptador = new AdaptadorRecyclerViewHorarios(agendamentoRepo.buscarAgendamentos());
+        // vincilar adaptador e RecyclerView
         recyclerView.setAdapter(adaptador);
-        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity().getBaseContext(), DividerItemDecoration.VERTICAL));
     }
 
     public void criarConexao() {

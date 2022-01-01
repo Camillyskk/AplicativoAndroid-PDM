@@ -56,8 +56,8 @@ public class TesteAct extends AppCompatActivity {
 
         usuarioRepo = new UsuarioRepo(conexao); //cria instancia
         List<Usuarios> dados = usuarioRepo.buscarUsuarios(); //chama a funcao
-        testeAdapter = new TesteAdapter(dados); //passa pro adapter
-        lstDados.setAdapter(testeAdapter); //vincula ao recycler view
+        //testeAdapter = new TesteAdapter(dados); //passa pro adapter
+        //lstDados.setAdapter(testeAdapter); //vincula ao recycler view
 
     }
     public void criarConexao() {

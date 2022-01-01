@@ -45,7 +45,7 @@ public class CadastroActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro);
         activity_cadastro = (LinearLayout) findViewById(R.id.activity_cadastro);
 
-        criarConexao(); //funcao copiada pq tava dando erro no layout
+        criarConexao();
 
         et_nome = findViewById(R.id.nome);
         et_sobrenome = findViewById(R.id.sobrenome);
@@ -75,21 +75,6 @@ public class CadastroActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(validarNome(et_nome) && validarNome(et_sobrenome) && validarRG(et_RG) && validarCPF(et_CPF) && validarDataNasc(et_dataNasc) && validarEmail(et_email) && validarTelefone(et_telefone) && validarCidade(et_cidade) && validarSenha(et_senha)){
-                  /*Usuario usuarioNovo = new Usuario();
-                   usuarioNovo.setNome(et_nome.getText().toString());
-                   usuarioNovo.setSobrenome(et_sobrenome.getText().toString());
-                   usuarioNovo.setEmail(et_email.getText().toString());
-                   usuarioNovo.setTelefone(et_telefone.getText().toString());
-                   usuarioNovo.setCidade(et_cidade.getText().toString());
-                   usuarioNovo.setdataNascimento(et_dataNasc.getText().toString());
-                   usuarioNovo.setRg(et_RG.getText().toString());
-                   usuarioNovo.setCpf(et_CPF.getText().toString());
-                   usuarioNovo.setSenha(et_senha.getText().toString());
-
-                   Usuario.cadastrar(usuarioNovo);
-                    Intent i = new Intent(getBaseContext(), UsuarioActivity.class);
-                    startActivity(i);*/
-
                     usuario = new Usuarios();
 
                     nome = et_nome.getText().toString();
@@ -145,6 +130,7 @@ public class CadastroActivity extends AppCompatActivity {
             return true;
         }
         catch (DateTimeParseException e){
+            editText.setError("Digite uma data válida.");
             return false;
         }
     }

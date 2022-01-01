@@ -15,15 +15,15 @@
         android:layout_height="120dp"
         android:background="@color/green"
         />
+
     <TextView
-        android:layout_height="50dp"
+        android:id="@+id/cabecalho"
         android:layout_width="wrap_content"
-        android:text="@string/hi_lorena"
-        android:textColor="@color/white"
-        android:textSize="30sp"
+        android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp"
-        />
+        android:textColor="@color/white"
+        android:textSize="30sp" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -42,7 +42,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp">
+        android:layout_marginTop="120dp"
+        android:layout_marginBottom="15dp">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -58,6 +59,7 @@
                 android:layout_marginTop="24dp"
                 android:background="@drawable/custom_edit_text"
                 android:ems="10"
+                android:enabled="false"
                 android:hint="@string/usuario"
                 android:importantForAutofill="no"
                 android:inputType="text"
@@ -73,6 +75,7 @@
                 android:layout_marginTop="72dp"
                 android:background="@drawable/custom_edit_text"
                 android:ems="10"
+                android:enabled="false"
                 android:hint="@string/sobrenome_usuario"
                 android:importantForAutofill="no"
                 android:inputType="text"
@@ -88,6 +91,7 @@
                 android:layout_marginTop="72dp"
                 android:background="@drawable/custom_edit_text"
                 android:ems="10"
+                android:enabled="false"
                 android:hint="@string/usuario_user_com"
                 android:importantForAutofill="no"
                 android:inputType="textEmailAddress"
@@ -103,6 +107,7 @@
                 android:layout_marginTop="72dp"
                 android:background="@drawable/custom_edit_text"
                 android:ems="10"
+                android:enabled="false"
                 android:hint="@string/_555140028922"
                 android:importantForAutofill="no"
                 android:inputType="phone"
@@ -118,6 +123,7 @@
                 android:layout_marginTop="72dp"
                 android:background="@drawable/custom_edit_text"
                 android:ems="10"
+                android:enabled="false"
                 android:hint="@string/capivara_do_sul"
                 android:importantForAutofill="no"
                 android:inputType="text"
@@ -133,6 +139,7 @@
                 android:layout_marginTop="72dp"
                 android:background="@drawable/custom_edit_text"
                 android:ems="10"
+                android:enabled="false"
                 android:hint="@string/_06_03_2003"
                 android:importantForAutofill="no"
                 android:inputType="date"
@@ -148,6 +155,7 @@
                 android:layout_marginTop="72dp"
                 android:background="@drawable/custom_edit_text"
                 android:ems="10"
+                android:enabled="false"
                 android:hint="@string/_112233445566"
                 android:importantForAutofill="no"
                 android:inputType="number"
@@ -163,9 +171,10 @@
                 android:layout_marginTop="72dp"
                 android:background="@drawable/custom_edit_text"
                 android:ems="10"
+                android:enabled="false"
                 android:hint="@string/_7841123789"
                 android:importantForAutofill="no"
-                android:inputType="textEmailAddress"
+                android:inputType="number"
                 android:textColorHint="@color/grey2"
                 android:textSize="20sp"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -178,6 +187,7 @@
                 android:layout_marginTop="72dp"
                 android:background="@drawable/custom_edit_text"
                 android:ems="10"
+                android:enabled="false"
                 android:hint="********"
                 android:importantForAutofill="no"
                 android:inputType="textPassword"

@@ -34,7 +34,7 @@ public class ScriptDLL {
         sql.append("CREATE TABLE IF NOT EXISTS Procedimento (");
         sql.append("ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, ");
         sql.append("Nome VARCHAR(45) NOT NULL, ");
-        sql.append("Valor DOUBLE NOT NULL )");
+        sql.append("Valor DOUBLE NOT NULL ) ");
 
         return sql.toString();
     }
@@ -47,6 +47,8 @@ public class ScriptDLL {
         sql.append("ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, ");
         sql.append("Dia VARCHAR(12) NOT NULL, ");
         sql.append("Hora VARCHAR(6) NOT NULL, ");
+        sql.append("Procedimento VARCHAR(45) NOT NULL, ");
+        sql.append("Valor DOUBLE NOT NULL, ");
         sql.append("Usuarios_ID NOT NULL, ");
         sql.append("Procedimento_ID NOT NULL, ");
         sql.append("FOREIGN KEY (Usuarios_ID) REFERENCES Usuarios (ID) ");
@@ -60,7 +62,7 @@ public class ScriptDLL {
     }
 
     public static String getInsertTableProcedimento(){
-        StringBuilder sql = new StringBuilder();
+
         /*
         Procedimento procedimento = new Procedimento();
         //copiar função conexao pra cá ou colar os inserts no main e depois apagar
@@ -94,6 +96,7 @@ public class ScriptDLL {
         procedimento.valor = 70.00;
         procedimentoRepo.inserir(procedimento);*/
 
+        StringBuilder sql = new StringBuilder();
         //não funcionou, disse que tem erro de sintexe
         /*sql.append("INSERT INTO Procedimento (ID, Nome, Valor) VALUES (null, 'Massagem', 50.00) ");
         sql.append("INSERT INTO Procedimento (ID, Nome, Valor) VALUES (null, 'Pintar o cabelo', 80.00) ");

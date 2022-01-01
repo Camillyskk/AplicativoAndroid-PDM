@@ -2,8 +2,10 @@ package com.example.projetopdm;
 
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
@@ -11,7 +13,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.projetopdm.database.DadosOpenHelper;
 import com.example.projetopdm.dominios.entidades.Agendamento;
@@ -19,14 +24,16 @@ import com.example.projetopdm.dominios.entidades.Procedimento;
 import com.example.projetopdm.dominios.entidades.repositorios.AgendamentoRepo;
 import com.example.projetopdm.dominios.entidades.repositorios.ProcedimentoRepo;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AgendarHorarioFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class AgendarHorarioFragment extends Fragment {
+
+    Button novo_agendamento;
+    EditText select_data;
 
     private Procedimento procedimento;
 
@@ -40,17 +47,13 @@ public class AgendarHorarioFragment extends Fragment {
         this.procedimento = procedimento;
     }
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
     public AgendarHorarioFragment() {
-        // Required empty public constructor
     }
 
     public static AgendarHorarioFragment newInstance(String param1, String param2) {
@@ -70,22 +73,10 @@ public class AgendarHorarioFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        };
-
-
-    public void preencheSpinner(Procedimento procedimento){
-        String nome = procedimento.nome;
-
-        List<Procedimento> lista = procedimentoRepo.buscarProcedimentos();
-
-        //ArrayAdapter<String> adapter_spinner = ArrayAdapter.createFromResource(getContext(), lista, R.layout.spinner_item);
-
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_agendar_horario, container, false);
 
         //spinner lista procedimentos
@@ -101,9 +92,54 @@ public class AgendarHorarioFragment extends Fragment {
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spinner2.setAdapter(adapter2);
 
+        novo_agendamento = v.findViewById(R.id.novo_agendamento);
+        select_data = v.findViewById(R.id.select_data);
+
+        novo_agendamento.setOnClickListener(new View.OnClickListener(){
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onClick(View v) {
+
+                if (validarDataNasc(select_data)){
+                    Agendamento agendamento = new Agendamento();
+                    Procedimento procedimento = new Procedimento();
+
+                    String nome = spinner.getSelectedItem().toString();
+
+                    procedimento = procedimentoRepo.buscarProcedimentoNome(nome);
+
+                    agendamento.procedimento_id = procedimento.ID;
+                    agendamento.usuarios_id = MainActivity.usuarioatual.ID;
+                    agendamento.dia = String.valueOf(select_data.getText());
+                    agendamento.hora = spinner2.getSelectedItem().toString();
+                    agendamento.procedimento = (String.valueOf(procedimentoRepo.buscarProcedimentoID(procedimento.ID).nome));
+                    agendamento.valor = (Double.valueOf(procedimentoRepo.buscarProcedimentoID(procedimento.ID).valor));
+                    agendamentoRepo.inserir(agendamento);
+
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.activity_usuario, new AgendamentosFragment()).commit();
+                }
+            }
+        });
+
         return v;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static boolean validarDataNasc(EditText editText){
+        String data = editText.getText().toString();
+
+        String dateFormat = "dd/MM/uuuu";
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(dateFormat).withResolverStyle(ResolverStyle.STRICT);
+
+        try{
+            LocalDate date = LocalDate.parse(data, dateTimeFormatter);
+            return true;
+        }
+        catch (DateTimeParseException e){
+            editText.setError("Digite uma data válida.");
+            return false;
+        }
+    }
 
     public void criarConexao() {
         try {

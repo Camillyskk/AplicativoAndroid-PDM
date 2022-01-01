@@ -3,44 +3,49 @@ package com.example.projetopdm.utilidadesadaptador;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projetopdm.R;
+import com.example.projetopdm.dominios.entidades.Agendamento;
 import com.example.projetopdm.dominios.entidades.Usuarios;
 
 import java.util.List;
 
-public class TesteAdapter extends RecyclerView.Adapter<TesteAdapter.ViewHolderTeste> {
+public class TesteAdapter extends RecyclerView.Adapter<TesteAdapter.HolderModeloDeLinha> {
 
-    public List<Usuarios> dados;
+    public List<Agendamento> dados;
 
-    public TesteAdapter (List<Usuarios> dados){
+    public TesteAdapter (List<Agendamento> dados){
         this.dados = dados;
     }
 
     @Override
-    public TesteAdapter.ViewHolderTeste onCreateViewHolder(ViewGroup parent, int viewType) { //pega o modelo de linha
+    public TesteAdapter.HolderModeloDeLinha onCreateViewHolder(ViewGroup parent, int viewType) { //pega o modelo de linha
 
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext()); //referencia layout
 
         View view = layoutInflater.inflate(R.layout.linha, parent, false); //referencia linha
 
-        ViewHolderTeste holderteste = new ViewHolderTeste(view);
+        HolderModeloDeLinha holderteste = new HolderModeloDeLinha(view);
 
         return holderteste;
     }
 
     @Override
-    public void onBindViewHolder(TesteAdapter.ViewHolderTeste holder, int position) { //passa dado do banco pro elemento
+    public void onBindViewHolder(HolderModeloDeLinha holder, int position) { //passa dado do banco pro elemento
 
         if(dados != null && dados.size() > 0){
-            Usuarios usuario = dados.get(position);
+            Agendamento agendamento = dados.get(position);
 
             //nome no ViewHolder      campo no banco
-            holder.rvemail.setText(usuario.email);
-            holder.rvsenha.setText(usuario.senha);
+            holder.data.setText(agendamento.dia);
+            holder.hora.setText(agendamento.hora);
+            holder.procedimento.setText(agendamento.procedimento_id);
+            //holder.valor.setText(agendamento.valor);
         }
 
     }
@@ -60,6 +65,20 @@ public class TesteAdapter extends RecyclerView.Adapter<TesteAdapter.ViewHolderTe
             rvemail = itemView.findViewById(R.id.email);
             rvsenha = itemView.findViewById(R.id.valor);
 
+        }
+    }
+    public class HolderModeloDeLinha extends RecyclerView.ViewHolder {
+        public TextView procedimento, valor, hora, data;
+        public ImageView iconeExcluir, iconeEditar;
+
+        public HolderModeloDeLinha(View itemView) {
+            super(itemView);
+            procedimento = itemView.findViewById(R.id.nome_procedimento);
+            valor = itemView.findViewById(R.id.valor);
+            hora = itemView.findViewById(R.id.hora);
+            data = itemView.findViewById(R.id.data);
+            iconeExcluir = itemView.findViewById(R.id.iconeExcluir);
+            iconeEditar = itemView.findViewById(R.id.iconeEditar);
         }
     }
 }

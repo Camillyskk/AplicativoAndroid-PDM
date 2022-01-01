@@ -69,7 +69,7 @@ public class ProcedimentoRepo {
 
             } while (resultado.moveToNext());
         }
-        return procedimentos;
+        return null;
     }
 
     public List<String> spinnerProcedimentos() {
@@ -87,20 +87,16 @@ public class ProcedimentoRepo {
     }
 
 
-    public Procedimento buscarProcedimento(int id){
+    public Procedimento buscarProcedimentoNome(String nome){
 
         Procedimento procedimento = new Procedimento();
 
         StringBuilder sql = new StringBuilder();
-        sql.append("SELECT Nome, Valor ");
+        sql.append("SELECT * ");
         sql.append("FROM Procedimento ");
-        sql.append("WHERE ID = ?");
+        sql.append("WHERE Nome = '" + nome + "'");
 
-
-        String[] parametros = new String[1];
-        parametros[0] = String.valueOf(id);
-
-        Cursor resultado = conexao.rawQuery(sql.toString(), parametros);
+        Cursor resultado = conexao.rawQuery(sql.toString(), null);
 
         if (resultado.getCount() > 0) {
 
@@ -114,4 +110,29 @@ public class ProcedimentoRepo {
         }
         return null;
     }
+
+    public Procedimento buscarProcedimentoID(int id){
+
+        Procedimento procedimento = new Procedimento();
+
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT * ");
+        sql.append("FROM Procedimento ");
+        sql.append("WHERE ID = " + id);
+
+        Cursor resultado = conexao.rawQuery(sql.toString(), null);
+
+        if (resultado.getCount() > 0) {
+
+            resultado.moveToFirst();
+
+            procedimento.nome = resultado.getString(resultado.getColumnIndexOrThrow("Nome"));
+            procedimento.valor = resultado.getDouble(resultado.getColumnIndexOrThrow("Valor"));
+            procedimento.ID = resultado.getInt(resultado.getColumnIndexOrThrow("ID"));
+
+            return procedimento;
+        }
+        return null;
+    }
+
 }

@@ -165,7 +165,7 @@
             android:ems="10"
             android:hint="@string/cpf"
             android:importantForAutofill="no"
-            android:inputType="textEmailAddress"
+            android:inputType="number"
             android:textColorHint="@color/grey2"
             android:textSize="20sp"
             tools:ignore="TextContrastCheck" />

@@ -1,6 +1,7 @@
 package com.example.projetopdm.utilidadesadaptador;
 
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -9,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.projetopdm.R;
 
 public class HolderModeloDeLinhaHorario extends RecyclerView.ViewHolder {
-    public TextView procedimento, valor, hora, data;
+    public EditText procedimento, valor, hora, data;
     public ImageView iconeExcluir, iconeEditar;
 
     public HolderModeloDeLinhaHorario(View itemView) {
