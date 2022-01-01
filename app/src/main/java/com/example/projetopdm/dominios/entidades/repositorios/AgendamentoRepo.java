@@ -47,8 +47,8 @@ public class AgendamentoRepo {
         contentValues.put("Hora", agendamento.hora);
         contentValues.put("Usuarios_ID", agendamento.usuarios_id);
         contentValues.put("Procedimento_ID", agendamento.procedimento_id);
-        contentValues.put("Procedimento", procedimentoRepo.buscarProcedimentoID(Integer.valueOf(agendamento.procedimento_id)).nome);
-        contentValues.put("Valor", procedimentoRepo.buscarProcedimentoID(Integer.valueOf(agendamento.procedimento_id)).valor);
+        contentValues.put("Procedimento", procedimentoRepo.buscarProcedimentoID(agendamento.procedimento_id).nome);
+        contentValues.put("Valor", procedimentoRepo.buscarProcedimentoID(agendamento.procedimento_id).valor);
 
         String[] parametros = new String[1];
         parametros[0] = String.valueOf(agendamento.ID);
@@ -56,16 +56,12 @@ public class AgendamentoRepo {
         conexao.update("agendamento", contentValues, "ID = ?", parametros);
     }
 
-    public List<Agendamento> buscarAgendamentos() {
+    /*public List<Agendamento> buscarAgendamentos() {
 
-        List<Agendamento> agendamentos = new ArrayList<Agendamento>();
+        List<Agendamento> agendamentos = new ArrayList<>();
 
-        StringBuilder sql = new StringBuilder();
-
-        sql.append("SELECT * ");
-        sql.append("FROM Agendamento ");
-
-        Cursor resultado = conexao.rawQuery(sql.toString(), null);
+        String sql = "SELECT * FROM Agendamento";
+        Cursor resultado = conexao.rawQuery(sql, null);
 
         if (resultado.getCount() > 0){
             resultado.moveToFirst();
@@ -84,22 +80,19 @@ public class AgendamentoRepo {
 
             } while (resultado.moveToNext());
         }
+        resultado.close();
         return agendamentos;
-    }
+    }*/
 
     public Agendamento buscarAgendamento(int id){
 
         Agendamento agendamento = new Agendamento();
 
-        StringBuilder sql = new StringBuilder();
-        sql.append("SELECT * ");
-        sql.append("FROM Agendamento ");
-        sql.append("WHERE ID = ?");
-
         String[] parametros = new String[1];
         parametros[0] = String.valueOf(id);
 
-        Cursor resultado = conexao.rawQuery(sql.toString(), parametros);
+        String sql = "SELECT * FROM Agendamento WHERE ID = ?";
+        Cursor resultado = conexao.rawQuery(sql, parametros);
 
         if (resultado.getCount() > 0) {
 
@@ -114,40 +107,38 @@ public class AgendamentoRepo {
 
             return agendamento;
         }
+        resultado.close();
         return null;
     }
 
-    public Agendamento buscarAgendamentoUsuario(int id){
+    public List<Agendamento> buscarAgendamentosUsuario(int id){
 
-        Agendamento agendamento = new Agendamento();
+        List<Agendamento> agendamentos = new ArrayList<>();
 
-        StringBuilder sql = new StringBuilder();
-        sql.append("SELECT * ");
-        sql.append("FROM Agendamento ");
-        sql.append("WHERE Usuario_ID = ?");
+        Cursor resultado = conexao.rawQuery("SELECT * FROM Agendamento WHERE Usuarios_ID = " + id, null);
 
-        String[] parametros = new String[1];
-        parametros[0] = String.valueOf(id);
-
-        Cursor resultado = conexao.rawQuery(sql.toString(), parametros);
-
-        if (resultado.getCount() > 0) {
-
+        if (resultado.getCount() > 0){
             resultado.moveToFirst();
-            agendamento.ID = resultado.getInt(resultado.getColumnIndexOrThrow("ID"));
-            agendamento.usuarios_id = resultado.getInt(resultado.getColumnIndexOrThrow("Usuarios_ID"));
-            agendamento.procedimento_id = resultado.getInt(resultado.getColumnIndexOrThrow("Procedimento_ID"));
-            agendamento.dia = resultado.getString(resultado.getColumnIndexOrThrow("Dia"));
-            agendamento.hora = resultado.getString(resultado.getColumnIndexOrThrow("Hora"));
-            agendamento.procedimento = resultado.getString(resultado.getColumnIndexOrThrow("Procedimento"));
-            agendamento.valor = resultado.getDouble(resultado.getColumnIndexOrThrow("Valor"));
 
-            return agendamento;
+            do {
+                Agendamento agendamento = new Agendamento();
+                agendamento.ID = resultado.getInt(resultado.getColumnIndexOrThrow("ID"));
+                agendamento.usuarios_id = resultado.getInt(resultado.getColumnIndexOrThrow("Usuarios_ID"));
+                agendamento.procedimento_id = resultado.getInt(resultado.getColumnIndexOrThrow("Procedimento_ID"));
+                agendamento.dia = resultado.getString(resultado.getColumnIndexOrThrow("Dia"));
+                agendamento.hora = resultado.getString(resultado.getColumnIndexOrThrow("Hora"));
+                agendamento.procedimento = resultado.getString(resultado.getColumnIndexOrThrow("Procedimento"));
+                agendamento.valor = resultado.getDouble(resultado.getColumnIndexOrThrow("Valor"));
+
+                agendamentos.add(agendamento);
+
+            } while (resultado.moveToNext());
         }
-        return null;
+        resultado.close();
+        return agendamentos;
     }
 
-    public Agendamento buscarUltimoAgendamento(int id){
+    /*public Agendamento buscarUltimoAgendamento(int id){
 
         Agendamento agendamento = new Agendamento();
 
@@ -168,5 +159,5 @@ public class AgendamentoRepo {
             return agendamento;
         }
         return null;
-    }
+    }*/
 }

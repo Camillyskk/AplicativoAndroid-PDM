@@ -19,10 +19,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.projetopdm.database.DadosOpenHelper;
+import com.example.projetopdm.database.Session;
 import com.example.projetopdm.dominios.entidades.Agendamento;
 import com.example.projetopdm.dominios.entidades.Procedimento;
+import com.example.projetopdm.dominios.entidades.Usuarios;
 import com.example.projetopdm.dominios.entidades.repositorios.AgendamentoRepo;
 import com.example.projetopdm.dominios.entidades.repositorios.ProcedimentoRepo;
+import com.example.projetopdm.dominios.entidades.repositorios.UsuarioRepo;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -42,6 +45,8 @@ public class AgendarHorarioFragment extends Fragment {
 
     AgendamentoRepo agendamentoRepo = new AgendamentoRepo(conexao);
     ProcedimentoRepo procedimentoRepo = new ProcedimentoRepo(conexao);
+
+    private Session session;
 
     public void setProcedimento(Procedimento procedimento) {
         this.procedimento = procedimento;
@@ -68,6 +73,7 @@ public class AgendarHorarioFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         criarConexao();
+        session = new Session(getContext());
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -109,7 +115,7 @@ public class AgendarHorarioFragment extends Fragment {
                     procedimento = procedimentoRepo.buscarProcedimentoNome(nome);
 
                     agendamento.procedimento_id = procedimento.ID;
-                    agendamento.usuarios_id = MainActivity.usuarioatual.ID;
+                    agendamento.usuarios_id = session.getID();
                     agendamento.dia = String.valueOf(select_data.getText());
                     agendamento.hora = spinner2.getSelectedItem().toString();
                     agendamento.procedimento = (String.valueOf(procedimentoRepo.buscarProcedimentoID(procedimento.ID).nome));

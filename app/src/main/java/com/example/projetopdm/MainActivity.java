@@ -8,12 +8,14 @@ import android.content.Intent;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.projetopdm.database.DadosOpenHelper;
+import com.example.projetopdm.database.Session;
 import com.example.projetopdm.dominios.entidades.Procedimento;
 import com.example.projetopdm.dominios.entidades.Usuarios;
 import com.example.projetopdm.dominios.entidades.repositorios.ProcedimentoRepo;
@@ -31,12 +33,13 @@ public class MainActivity extends AppCompatActivity {
     static DadosOpenHelper dadosOpenHelper;
 
     UsuarioRepo usuarioRepo = new UsuarioRepo(conexao);
-    static Usuarios usuarioatual = new Usuarios();
+    Session session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
         activity_main = (ConstraintLayout) findViewById(R.id.activity_main);
@@ -81,14 +84,21 @@ public class MainActivity extends AppCompatActivity {
         et_email = findViewById(R.id.email);
         et_senha = findViewById(R.id.valor);
 
+        session = new Session(getBaseContext());
+
         bt_entrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email =  et_email.getText().toString();
+                String email = et_email.getText().toString();
                 String senha = et_senha.getText().toString();
 
-                if (usuarioRepo.validaSenha(senha, email)){
-                    usuarioatual = usuarioRepo.buscarUsuario(email);
+                if (usuarioRepo.validaSenha(senha, email)) {
+
+                    session.setID(usuarioRepo.buscarUsuario(email).ID);
+                    session.setEmail(usuarioRepo.buscarUsuario(email).email);
+
+                    Log.d("EMAIL ", session.getEmail());
+
                     Intent i = new Intent(getBaseContext(), UsuarioActivity.class);
                     startActivity(i);
                 } else {
@@ -116,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void criarConexao() {
         try {
-            dadosOpenHelper = new DadosOpenHelper(getBaseContext());
+            dadosOpenHelper = new DadosOpenHelper(this);
 
             conexao = dadosOpenHelper.getWritableDatabase();
 
@@ -125,15 +135,11 @@ public class MainActivity extends AppCompatActivity {
             usuarioRepo = new UsuarioRepo(conexao);
 
         } catch (SQLException ex) {
-            AlertDialog.Builder dlg = new AlertDialog.Builder(getBaseContext());
+            AlertDialog.Builder dlg = new AlertDialog.Builder(this);
             dlg.setTitle(R.string.message_erro);
             dlg.setMessage(ex.getMessage());
             dlg.setNeutralButton(R.string.message_ok, null);
             dlg.show();
         }
-    }
-
-    public static Usuarios getUsuarioAtual() {
-        return usuarioatual;
     }
 }

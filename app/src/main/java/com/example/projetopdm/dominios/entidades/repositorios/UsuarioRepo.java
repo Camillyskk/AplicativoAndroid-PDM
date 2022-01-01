@@ -125,6 +125,34 @@ public class UsuarioRepo {
        return usuarios;
    }
 
+    /*public Usuarios buscarUsuarioID(int id){
+
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT * FROM Usuarios WHERE ID = " + id);
+
+        Cursor resultado = conexao.rawQuery(sql.toString(), null);
+
+        if (resultado.getCount() > 0) {
+            resultado.moveToFirst();
+
+            Usuarios usuarios = new Usuarios();
+
+            usuarios.nome = resultado.getString(resultado.getColumnIndexOrThrow("Nome"));
+            usuarios.sobrenome = resultado.getString(resultado.getColumnIndexOrThrow("Sobrenome"));
+            usuarios.telefone = resultado.getString(resultado.getColumnIndexOrThrow("Telefone"));
+            usuarios.cidade = resultado.getString(resultado.getColumnIndexOrThrow("Cidade"));
+            usuarios.RG = resultado.getString(resultado.getColumnIndexOrThrow("RG"));
+            usuarios.CPF = resultado.getString(resultado.getColumnIndexOrThrow("CPF"));
+            usuarios.nascimento = resultado.getString(resultado.getColumnIndexOrThrow("Nascimento"));
+            usuarios.email = resultado.getString(resultado.getColumnIndexOrThrow("Email"));
+            usuarios.senha = resultado.getString(resultado.getColumnIndexOrThrow("Senha"));
+            usuarios.ID = resultado.getInt(resultado.getColumnIndexOrThrow("ID"));
+
+            return usuarios;
+        }
+        return null;
+    }*/
+
     public boolean validaSenha(String senha, String email) {
 
         StringBuilder sql = new StringBuilder();

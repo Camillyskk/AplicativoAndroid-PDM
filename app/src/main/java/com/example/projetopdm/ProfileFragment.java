@@ -8,7 +8,6 @@ import static com.example.projetopdm.CadastroActivity.validarNome;
 import static com.example.projetopdm.CadastroActivity.validarRG;
 import static com.example.projetopdm.CadastroActivity.validarSenha;
 import static com.example.projetopdm.CadastroActivity.validarTelefone;
-import static com.example.projetopdm.MainActivity.usuarioatual;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -31,6 +30,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.projetopdm.database.DadosOpenHelper;
+import com.example.projetopdm.database.Session;
 import com.example.projetopdm.dominios.entidades.Usuarios;
 import com.example.projetopdm.dominios.entidades.repositorios.UsuarioRepo;
 
@@ -44,21 +44,19 @@ public class ProfileFragment extends Fragment {
     static DadosOpenHelper dadosOpenHelper;
 
     UsuarioRepo usuarioRepo = new UsuarioRepo(conexao);
+    Usuarios usuarioatual;
 
+    private Session session;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
     public ProfileFragment() {
     }
 
-    // TODO: Rename and change types and number of parameters
     public static ProfileFragment newInstance(String param1, String param2) {
         ProfileFragment fragment = new ProfileFragment();
         Bundle args = new Bundle();
@@ -71,7 +69,10 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         criarConexao();
+        session = new Session(getContext());
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -99,6 +100,8 @@ public class ProfileFragment extends Fragment {
         bt_deletar = v.findViewById(R.id.bt_deletar);
 
         cabecalho = v.findViewById(R.id.cabecalho);
+
+        usuarioatual = usuarioRepo.buscarUsuario(session.getEmail());
 
         //puxa dados do banco
         et_nome.setText(usuarioatual.nome.toString());
@@ -146,7 +149,7 @@ public class ProfileFragment extends Fragment {
         bt_sair.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                usuarioatual = null;
+                session.setID(-1);
                 Intent i = new Intent(getActivity(), MainActivity.class); //volta pro login
                 startActivity(i);
             }
@@ -169,12 +172,17 @@ public class ProfileFragment extends Fragment {
                     public void onClick(DialogInterface dialog, int which) {
                         usuarioRepo.excluir(usuarioatual.ID);
                         Toast.makeText(getContext(),"Registro excluído sucesso!", Toast.LENGTH_SHORT).show();
-                        usuarioatual = null;
+                        session.setID(-1);
                         Intent i = new Intent(getActivity(), MainActivity.class);
                         startActivity(i);
-                    };
-                }
-            );}
+                    }
+                });
+                usuarioRepo.excluir(usuarioatual.ID);
+                Toast.makeText(getContext(),"Registro excluído sucesso!", Toast.LENGTH_SHORT).show();
+                session.setID(-1);
+                Intent i = new Intent(getActivity(), MainActivity.class);
+                startActivity(i);
+            }
         });
 
         return v;
