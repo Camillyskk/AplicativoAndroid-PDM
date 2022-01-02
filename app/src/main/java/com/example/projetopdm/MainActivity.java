@@ -17,7 +17,6 @@ import android.widget.Toast;
 import com.example.projetopdm.database.DadosOpenHelper;
 import com.example.projetopdm.database.Session;
 import com.example.projetopdm.dominios.entidades.Procedimento;
-import com.example.projetopdm.dominios.entidades.Usuarios;
 import com.example.projetopdm.dominios.entidades.repositorios.ProcedimentoRepo;
 import com.example.projetopdm.dominios.entidades.repositorios.UsuarioRepo;
 
@@ -35,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
     UsuarioRepo usuarioRepo = new UsuarioRepo(conexao);
     Session session;
 
+    ProcedimentoRepo procedimentoRepo;
+    Procedimento procedimento;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -42,13 +44,13 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        activity_main = (ConstraintLayout) findViewById(R.id.activity_main);
-        //deleteDatabase("db_clinica");     //se precisar mudar mais alguma coisa na estrutura
+        activity_main = findViewById(R.id.activity_main);
+
         criarConexao();
 
-        //descomentar na primeira vez rodar o app pra poder inserir os procedimentos
-        /*ProcedimentoRepo procedimentoRepo = new ProcedimentoRepo(conexao);
-        Procedimento procedimento = new Procedimento();
+        //descomentar na primeira vez que rodar o app pra poder inserir os procedimentos
+        /*procedimentoRepo = new ProcedimentoRepo(conexao);
+        procedimento = new Procedimento();
 
         procedimento.nome = "Massagem";
         procedimento.valor = 50.00;
@@ -97,8 +99,6 @@ public class MainActivity extends AppCompatActivity {
                     session.setID(usuarioRepo.buscarUsuario(email).ID);
                     session.setEmail(usuarioRepo.buscarUsuario(email).email);
 
-                    Log.d("EMAIL ", session.getEmail());
-
                     Intent i = new Intent(getBaseContext(), UsuarioActivity.class);
                     startActivity(i);
                 } else {
@@ -107,11 +107,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-        //Colocar os dados do banco como placeholder nos EditTexts
-        //ver a exclusão de agendamentos, pra poder tirar os items excluidos da tela
-        //ver se quando clica em editar e abre a outra fragment realment vai atualizar
-        //o agendamento
 
         bt_cadastrar.setOnClickListener(new View.OnClickListener() {
             @Override

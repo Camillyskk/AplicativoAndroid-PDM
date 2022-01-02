@@ -1,7 +1,6 @@
 package com.example.projetopdm.database;
 
 import android.content.Context;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -14,7 +13,7 @@ public class DadosOpenHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        db.execSQL(ScriptDLL.getCreateTableUsuarios());
+        db.execSQL(ScriptDLL.getCreateTableUsuario());
         db.execSQL(ScriptDLL.getCreateTableProcedimento());
         db.execSQL(ScriptDLL.getCreateTableAgendamento());
         //db.execSQL(ScriptDLL.getInsertTableProcedimento());

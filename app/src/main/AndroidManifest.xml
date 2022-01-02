@@ -10,9 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjetoPDM">
         <activity
-            android:name=".TesteAct"
-            android:exported="false" />
-        <activity
             android:name=".UsuarioActivity"
             android:exported="false" />
         <activity

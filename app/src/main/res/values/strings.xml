@@ -4,32 +4,28 @@
     <string name="senha">Senha</string>
     <string name="entrar">Entrar</string>
     <string name="cadastre_se">Cadastre-se</string>
-    <string name="Nome">nome</string>
-    <string name="nome">Nome</string>
+    <string name="Nome">Nome</string>
     <string name="telefone">Telefone</string>
     <string name="sobrenome">Sobrenome</string>
-    <string name="cidade">Cidade</string>
+    <string name="Cidade">Cidade</string>
     <string name="cpf">CPF</string>
     <string name="data_de_nascimento">Data de Nascimento</string>
     <string name="rg">RG</string>
     <string name="cadastro">Cadastro</string>
     <string name="login">Login</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hi_lorena">Hi Lorena</string>
     <string name="sair">Sair</string>
     <string name="meus_agendamentos">Meus Agendamentos</string>
     <string name="novo_agendamento">Novo Agendamento</string>
-    <string name="esfoliacao">Esfoliacao</string>
     <string name="agendar_hor_rio">Agendar Horário</string>
     <string name="single_line_draw">single line draw</string>
-    <string name="notificacoes">Notificacoes</string>
+    <string name="notificacoes">Notificações</string>
     <string name="sobre_nos">Sobre Nós</string>
     <string name="sobre_o_aplicativo">Sobre o Aplicativo:</string>
     <string name="descricao">O objetivo deste aplicativo é auxiliar empreendedores no gerenciamento de tempo e de clientes. Pensando nisso, idealizamos um aplicativo para um salão de beleza, onde o cliente terá autonomia para agendar, editar ou desmarcar horários, garantindo a automatização do gerencciamento de clientes e horários e uma maior eficiência do serviço prestado.</string>
     <string name="atualizar_dados">atualizar dados</string>
-    <string name="usuarios">Clientes</string>
-    <string name="joao_paralepipedo">Joao Paralepipedo</string>
     <string name="funcionarios">Funcionários</string>
     <string name="novo_funcionario">novo funcionário</string>
     <string name="procedimentos">Procedimentos</string>
@@ -43,31 +39,13 @@
     <string name="message_conexao_ok">Conexão criada com sucesso</string>
     <string name="message_ok">OK</string>
     <string name="message_erro">Erro</string>
-    <string name="work_in_progress">Work in Progress</string>
     <string name="deletar_perfil">deletar perfil</string>
     <string name="cadastrar">Cadastrar</string>
-    <string name="usuario">Usuario</string>
-    <string name="sobrenome_usuario">sobrenome usuario</string>
-    <string name="usuario_user_com">usuario@user.com</string>
-    <string name="_555140028922">555140028922</string>
-    <string name="capivara_do_sul">Capivara do Sul</string>
-    <string name="_06_03_2003">06/03/2003</string>
-    <string name="_112233445566">112233445566</string>
-    <string name="_7841123789">7841123789</string>
     <string name="dataEntrega">31/12/2021</string>
     <string name="autoras">Feito por Camilly Antunes e Julia Badin</string>
-
-    <string-array name="procedimentos">
-        <item>Limpeza de Pele</item>
-        <item>Pintura Cabelo</item>
-        <item>Descoloração</item>
-        <item>Depilação</item>
-        <item>Corte</item>
-        <item>Escova</item>
-        <item>Manicure</item>
-        <item>Pedicure</item>
-        <item>Maquiagem</item>
-    </string-array>
+    <string name="em_construcao">Em Construção...</string>
+    <string name="description_edit_agendamento">Icone para editar o agendamento</string>
+    <string name="description_excluir_agendamento">Icone excluir agendamento</string>
 
     <string-array name="horarios">
         <item>08:00</item>

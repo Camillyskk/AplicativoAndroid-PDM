@@ -5,7 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.example.projetopdm.dominios.entidades.Usuarios;
+import com.example.projetopdm.dominios.entidades.Usuario;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,25 +14,23 @@ public class UsuarioRepo {
 
     public static SQLiteDatabase conexao;
 
-    public UsuarioRepo usuarioRepo;
-
     public UsuarioRepo(SQLiteDatabase conexao){
         this.conexao = conexao;
     }
 
-   public void inserir(Usuarios usuarios){
+   public void inserir(Usuario usuario){
 
        ContentValues contentValues = new ContentValues();
-       contentValues.put("Nome", usuarios.nome);
-       contentValues.put("Sobrenome", usuarios.sobrenome);
-       contentValues.put("Telefone", usuarios.telefone);
-       contentValues.put("Cidade", usuarios.cidade);
-       contentValues.put("CPF", usuarios.CPF);
-       contentValues.put("RG", usuarios.RG);
-       contentValues.put("Nascimento", usuarios.nascimento);
-       contentValues.put("Email", usuarios.email);
-       contentValues.put("Senha", usuarios.senha);
-       conexao.insertOrThrow("Usuarios", "ID", contentValues);
+       contentValues.put("Nome", usuario.nome);
+       contentValues.put("Sobrenome", usuario.sobrenome);
+       contentValues.put("Telefone", usuario.telefone);
+       contentValues.put("Cidade", usuario.cidade);
+       contentValues.put("CPF", usuario.CPF);
+       contentValues.put("RG", usuario.RG);
+       contentValues.put("Nascimento", usuario.nascimento);
+       contentValues.put("Email", usuario.email);
+       contentValues.put("Senha", usuario.senha);
+       conexao.insertOrThrow("Usuario", "ID", contentValues);
    }
 
    public void excluir(int id){
@@ -40,46 +38,44 @@ public class UsuarioRepo {
        String[] parametros = new String[1];
        parametros[0] = String.valueOf(id);
 
-       conexao.delete("Usuarios", "ID = ?", parametros);
+       conexao.delete("Usuario", "ID = ?", parametros);
    }
 
-   public void alterar(Usuarios usuarios){
+   public void alterar(Usuario usuario){
 
        ContentValues contentValues = new ContentValues();
-       contentValues.put("Nome", usuarios.nome);
-       contentValues.put("Sobrenome", usuarios.sobrenome);
-       contentValues.put("Telefone", usuarios.telefone);
-       contentValues.put("Cidade", usuarios.cidade);
-       contentValues.put("CPF", usuarios.CPF);
-       contentValues.put("RG", usuarios.RG);
-       contentValues.put("Nascimento", usuarios.nascimento);
-       contentValues.put("Email", usuarios.email);
-       contentValues.put("Senha", usuarios.senha);
+       contentValues.put("Nome", usuario.nome);
+       contentValues.put("Sobrenome", usuario.sobrenome);
+       contentValues.put("Telefone", usuario.telefone);
+       contentValues.put("Cidade", usuario.cidade);
+       contentValues.put("CPF", usuario.CPF);
+       contentValues.put("RG", usuario.RG);
+       contentValues.put("Nascimento", usuario.nascimento);
+       contentValues.put("Email", usuario.email);
+       contentValues.put("Senha", usuario.senha);
 
        String[] parametros = new String[1];
-       parametros[0] = String.valueOf(usuarios.ID);
+       parametros[0] = String.valueOf(usuario.ID);
 
-       conexao.update("Usuarios", contentValues, "ID = ?", parametros);
+       conexao.update("Usuario", contentValues, "ID = ?", parametros);
    }
 
-   public List<Usuarios> buscarUsuarios() {
+   public List<Usuario> buscarUsuario() {
 
-        List<Usuarios> usuarios = new ArrayList<Usuarios>();
+        List<Usuario> usuarios = new ArrayList<Usuario>();
 
         StringBuilder sql = new StringBuilder();
 
-        sql.append("SELECT * ");
-        //sql.append("SELECT Nome, Sobrenome, Telefone, Cidade, CPF, RG, Nascimento, Email, Senha ");
-        sql.append("FROM Usuarios ");
+        sql.append("SELECT * FROM Usuario");
 
         Cursor resultado = conexao.rawQuery(sql.toString(), null);
 
         if (resultado.getCount() > 0){
             resultado.moveToFirst();
             do {
-                Usuarios usuario = new Usuarios();
+                Usuario usuario = new Usuario();
 
-                //usuario.ID = resultado.getInt(resultado.getColumnIndexOrThrow("ID"));
+                usuario.ID = resultado.getInt(resultado.getColumnIndexOrThrow("ID"));
                 usuario.nome = resultado.getString(resultado.getColumnIndexOrThrow("Nome"));
                 usuario.sobrenome = resultado.getString(resultado.getColumnIndexOrThrow("Sobrenome"));
                 usuario.telefone = resultado.getString(resultado.getColumnIndexOrThrow("Telefone"));
@@ -98,57 +94,73 @@ public class UsuarioRepo {
        return null;
    }
 
-   public Usuarios buscarUsuario(String email){
+   public Usuario buscarUsuario(String email){
 
        StringBuilder sql = new StringBuilder();
-       sql.append("SELECT * FROM Usuarios WHERE Email=? ");
+       sql.append("SELECT * FROM Usuario WHERE Email=? ");
 
        String[] parametros = new String[]{email};
 
        Cursor resultado = conexao.rawQuery(sql.toString(), parametros);
 
-       Usuarios usuarios = new Usuarios();
+       Usuario usuario = new Usuario();
 
        if (resultado.moveToNext()) {
-           usuarios.nome = resultado.getString(resultado.getColumnIndexOrThrow("Nome"));
-           usuarios.sobrenome = resultado.getString(resultado.getColumnIndexOrThrow("Sobrenome"));
-           usuarios.telefone = resultado.getString(resultado.getColumnIndexOrThrow("Telefone"));
-           usuarios.cidade = resultado.getString(resultado.getColumnIndexOrThrow("Cidade"));
-           usuarios.RG = resultado.getString(resultado.getColumnIndexOrThrow("RG"));
-           usuarios.CPF = resultado.getString(resultado.getColumnIndexOrThrow("CPF"));
-           usuarios.nascimento = resultado.getString(resultado.getColumnIndexOrThrow("Nascimento"));
-           usuarios.email = resultado.getString(resultado.getColumnIndexOrThrow("Email"));
-           usuarios.senha = resultado.getString(resultado.getColumnIndexOrThrow("Senha"));
-           usuarios.ID = resultado.getInt(resultado.getColumnIndexOrThrow("ID"));
+           usuario.nome = resultado.getString(resultado.getColumnIndexOrThrow("Nome"));
+           usuario.sobrenome = resultado.getString(resultado.getColumnIndexOrThrow("Sobrenome"));
+           usuario.telefone = resultado.getString(resultado.getColumnIndexOrThrow("Telefone"));
+           usuario.cidade = resultado.getString(resultado.getColumnIndexOrThrow("Cidade"));
+           usuario.RG = resultado.getString(resultado.getColumnIndexOrThrow("RG"));
+           usuario.CPF = resultado.getString(resultado.getColumnIndexOrThrow("CPF"));
+           usuario.nascimento = resultado.getString(resultado.getColumnIndexOrThrow("Nascimento"));
+           usuario.email = resultado.getString(resultado.getColumnIndexOrThrow("Email"));
+           usuario.senha = resultado.getString(resultado.getColumnIndexOrThrow("Senha"));
+           usuario.ID = resultado.getInt(resultado.getColumnIndexOrThrow("ID"));
        }
 
-       return usuarios;
+       return usuario;
    }
 
-    /*public Usuarios buscarUsuarioID(int id){
+    public static boolean usuarioExiste(String email){
 
         StringBuilder sql = new StringBuilder();
-        sql.append("SELECT * FROM Usuarios WHERE ID = " + id);
+        sql.append("SELECT * FROM Usuario WHERE Email=? ");
+
+        String[] parametros = new String[]{email};
+
+        Cursor resultado = conexao.rawQuery(sql.toString(), parametros);
+
+        if (resultado.getCount() > 1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    /*public Usuario buscarUsuarioID(int id){
+
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT * FROM Usuario WHERE ID = " + id);
 
         Cursor resultado = conexao.rawQuery(sql.toString(), null);
 
         if (resultado.getCount() > 0) {
             resultado.moveToFirst();
 
-            Usuarios usuarios = new Usuarios();
+            Usuario usuario = new Usuario();
 
-            usuarios.nome = resultado.getString(resultado.getColumnIndexOrThrow("Nome"));
-            usuarios.sobrenome = resultado.getString(resultado.getColumnIndexOrThrow("Sobrenome"));
-            usuarios.telefone = resultado.getString(resultado.getColumnIndexOrThrow("Telefone"));
-            usuarios.cidade = resultado.getString(resultado.getColumnIndexOrThrow("Cidade"));
-            usuarios.RG = resultado.getString(resultado.getColumnIndexOrThrow("RG"));
-            usuarios.CPF = resultado.getString(resultado.getColumnIndexOrThrow("CPF"));
-            usuarios.nascimento = resultado.getString(resultado.getColumnIndexOrThrow("Nascimento"));
-            usuarios.email = resultado.getString(resultado.getColumnIndexOrThrow("Email"));
-            usuarios.senha = resultado.getString(resultado.getColumnIndexOrThrow("Senha"));
-            usuarios.ID = resultado.getInt(resultado.getColumnIndexOrThrow("ID"));
+            usuario.nome = resultado.getString(resultado.getColumnIndexOrThrow("Nome"));
+            usuario.sobrenome = resultado.getString(resultado.getColumnIndexOrThrow("Sobrenome"));
+            usuario.telefone = resultado.getString(resultado.getColumnIndexOrThrow("Telefone"));
+            usuario.cidade = resultado.getString(resultado.getColumnIndexOrThrow("Cidade"));
+            usuario.RG = resultado.getString(resultado.getColumnIndexOrThrow("RG"));
+            usuario.CPF = resultado.getString(resultado.getColumnIndexOrThrow("CPF"));
+            usuario.nascimento = resultado.getString(resultado.getColumnIndexOrThrow("Nascimento"));
+            usuario.email = resultado.getString(resultado.getColumnIndexOrThrow("Email"));
+            usuario.senha = resultado.getString(resultado.getColumnIndexOrThrow("Senha"));
+            usuario.ID = resultado.getInt(resultado.getColumnIndexOrThrow("ID"));
 
-            return usuarios;
+            return usuario;
         }
         return null;
     }*/
@@ -156,7 +168,7 @@ public class UsuarioRepo {
     public boolean validaSenha(String senha, String email) {
 
         StringBuilder sql = new StringBuilder();
-        sql.append("SELECT * FROM Usuarios WHERE Senha=? AND Email=?");
+        sql.append("SELECT * FROM Usuario WHERE Senha=? AND Email=?");
 
         String[] parametros = new String[]{senha, email};
 
@@ -164,7 +176,6 @@ public class UsuarioRepo {
 
         // Retorna se o cursor tem 1 resultado com o email e senha informados
         return resultado != null && resultado.getCount() > 0;
-
     }
 
 }

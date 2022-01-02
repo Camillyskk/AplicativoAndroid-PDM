@@ -9,7 +9,6 @@ import static com.example.projetopdm.CadastroActivity.validarRG;
 import static com.example.projetopdm.CadastroActivity.validarSenha;
 import static com.example.projetopdm.CadastroActivity.validarTelefone;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -21,6 +20,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +31,7 @@ import android.widget.Toast;
 
 import com.example.projetopdm.database.DadosOpenHelper;
 import com.example.projetopdm.database.Session;
-import com.example.projetopdm.dominios.entidades.Usuarios;
+import com.example.projetopdm.dominios.entidades.Usuario;
 import com.example.projetopdm.dominios.entidades.repositorios.UsuarioRepo;
 
 public class ProfileFragment extends Fragment {
@@ -44,7 +44,7 @@ public class ProfileFragment extends Fragment {
     static DadosOpenHelper dadosOpenHelper;
 
     UsuarioRepo usuarioRepo = new UsuarioRepo(conexao);
-    Usuarios usuarioatual;
+    Usuario usuarioatual;
 
     private Session session;
 
@@ -72,6 +72,7 @@ public class ProfileFragment extends Fragment {
 
         criarConexao();
         session = new Session(getContext());
+        usuarioatual = usuarioRepo.buscarUsuario(session.getEmail());
 
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
@@ -81,10 +82,8 @@ public class ProfileFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        //EditTexts com os dados
         et_nome = v.findViewById(R.id.nome);
         et_sobrenome = v.findViewById(R.id.sobrenome);
         et_email = v.findViewById(R.id.email);
@@ -101,18 +100,16 @@ public class ProfileFragment extends Fragment {
 
         cabecalho = v.findViewById(R.id.cabecalho);
 
-        usuarioatual = usuarioRepo.buscarUsuario(session.getEmail());
-
         //puxa dados do banco
-        et_nome.setText(usuarioatual.nome.toString());
-        et_sobrenome.setText(usuarioatual.sobrenome.toString());
-        et_email.setText(usuarioatual.email.toString());
-        et_telefone.setText(usuarioatual.telefone.toString());
-        et_cidade.setText(usuarioatual.cidade.toString());
-        et_dataNasc.setText(usuarioatual.nascimento.toString());
-        et_CPF.setText(usuarioatual.CPF.toString());
-        et_RG.setText(usuarioatual.RG.toString());
-        et_senha.setText(usuarioatual.senha.toString());
+        et_nome.setText(usuarioatual.nome);
+        et_sobrenome.setText(usuarioatual.sobrenome);
+        et_email.setText(usuarioatual.email);
+        et_telefone.setText(usuarioatual.telefone);
+        et_cidade.setText(usuarioatual.cidade);
+        et_dataNasc.setText(usuarioatual.nascimento);
+        et_CPF.setText(usuarioatual.CPF);
+        et_RG.setText(usuarioatual.RG);
+        et_senha.setText(usuarioatual.senha);
 
         cabecalho.setText("Bem vindo(a) " + usuarioatual.nome);
 
@@ -120,7 +117,7 @@ public class ProfileFragment extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
-                Usuarios user = new Usuarios();
+                Usuario user = new Usuario();
 
                 user.ID = usuarioatual.ID;
                 user.nome = et_nome.getText().toString();
@@ -133,11 +130,10 @@ public class ProfileFragment extends Fragment {
                 user.CPF = et_CPF.getText().toString();
                 user.nascimento = et_dataNasc.getText().toString();
 
-                usuarioRepo.alterar(user);
-
                 if(et_email.isEnabled()){
-                   if(isDadosValidos()) {
-                    desabilitarEditTexts();
+                   if(isDadosValidos(user.email)) {
+                        usuarioRepo.alterar(user);
+                        desabilitarEditTexts();
                     }
                 }
                 else{
@@ -151,7 +147,7 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
                 session.setID(-1);
                 session.setEmail("");
-                Intent i = new Intent(getActivity(), MainActivity.class); //volta pro login
+                Intent i = new Intent(getActivity(), MainActivity.class);
                 startActivity(i);
             }
         });
@@ -183,8 +179,10 @@ public class ProfileFragment extends Fragment {
                 });*/
                 usuarioRepo.excluir(usuarioatual.ID);
                 Toast.makeText(getContext(),"Registro excluído sucesso!", Toast.LENGTH_SHORT).show();
+
                 session.setID(-1);
                 session.setEmail("");
+
                 Intent i = new Intent(getActivity(), MainActivity.class);
                 startActivity(i);
             }
@@ -217,14 +215,22 @@ public class ProfileFragment extends Fragment {
         et_RG.setEnabled(false);
     }
 
+    public boolean validaEmail(EditText editText, String email){
+        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            editText.setError("Insira um E-mail válido.");
+            return false;
+        }
+        return true;
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public boolean isDadosValidos(){
+    public boolean isDadosValidos(String email){
         if(validarNome(et_nome) &&
            validarNome(et_sobrenome) &&
            validarEmail(et_email) &&
            validarCPF(et_CPF) &&
            validarRG(et_RG) &&
-           validarEmail(et_email) &&
+           validaEmail(et_email, email) &&
            validarSenha(et_senha) &&
            validarTelefone(et_telefone) &&
            validarCidade(et_cidade) &&

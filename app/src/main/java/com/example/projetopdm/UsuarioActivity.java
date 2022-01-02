@@ -1,28 +1,17 @@
 package com.example.projetopdm;
 
-import static com.example.projetopdm.R.id.activity_usuario;
-import static com.example.projetopdm.R.id.profile_item;
-
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.projetopdm.database.DadosOpenHelper;
-import com.example.projetopdm.dominios.entidades.Usuarios;
-import com.example.projetopdm.dominios.entidades.repositorios.UsuarioRepo;
+import com.example.projetopdm.adaptador.AdaptadorRecyclerViewHorarios;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.snackbar.Snackbar;
 
 public class UsuarioActivity extends AppCompatActivity {
 
-    ConstraintLayout activity_usuario;
 
     BottomNavigationView navigationView;
 
@@ -60,11 +49,13 @@ public class UsuarioActivity extends AppCompatActivity {
                 }
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.activity_usuario, fragment).commit();
-//                navigationView.setSelectedItemId(profile_item); //tava comentado, se der tilt, comenta de novo
 
                 return true;
             }
         });
-
+        //chama fragment pra editar agendamento
+        if (AdaptadorRecyclerViewHorarios.isEditar()){
+            getSupportFragmentManager().beginTransaction().replace(R.id.activity_usuario, new AgendarHorarioFragment()).commit();
+        }
     }
 }

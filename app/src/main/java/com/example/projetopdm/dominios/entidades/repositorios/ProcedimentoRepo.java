@@ -113,17 +113,15 @@ public class ProcedimentoRepo {
 
     public Procedimento buscarProcedimentoID(int id){
 
-        Procedimento procedimento = new Procedimento();
-
         StringBuilder sql = new StringBuilder();
-        sql.append("SELECT * ");
-        sql.append("FROM Procedimento ");
-        sql.append("WHERE ID = " + id);
+        sql.append("SELECT * FROM Procedimento WHERE ID=?");
 
-        Cursor resultado = conexao.rawQuery(sql.toString(), null);
+        String[] parametros = new String[]{String.valueOf(id)};
+
+        Cursor resultado = conexao.rawQuery(sql.toString(), parametros);
 
         if (resultado.getCount() > 0) {
-
+            Procedimento procedimento = new Procedimento();
             resultado.moveToFirst();
 
             procedimento.nome = resultado.getString(resultado.getColumnIndexOrThrow("Nome"));
@@ -134,5 +132,4 @@ public class ProcedimentoRepo {
         }
         return null;
     }
-
 }

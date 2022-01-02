@@ -1,5 +1,7 @@
 package com.example.projetopdm;
 
+import static com.example.projetopdm.dominios.entidades.repositorios.UsuarioRepo.usuarioExiste;
+
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,15 +12,15 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.projetopdm.database.DadosOpenHelper;
-import com.example.projetopdm.dominios.entidades.Usuarios;
+import com.example.projetopdm.dominios.entidades.Usuario;
 import com.example.projetopdm.dominios.entidades.repositorios.UsuarioRepo;
 
 import java.time.LocalDate;
@@ -36,16 +38,17 @@ public class CadastroActivity extends AppCompatActivity {
 
     SQLiteDatabase conexao;
     DadosOpenHelper dadosOpenHelper;
-    Usuarios usuario;
+    Usuario usuario;
     UsuarioRepo usuarioRepo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
-        activity_cadastro = (LinearLayout) findViewById(R.id.activity_cadastro);
+        activity_cadastro = findViewById(R.id.activity_cadastro);
 
         criarConexao();
+        usuarioRepo = new UsuarioRepo(conexao);
 
         et_nome = findViewById(R.id.nome);
         et_sobrenome = findViewById(R.id.sobrenome);
@@ -75,7 +78,7 @@ public class CadastroActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(validarNome(et_nome) && validarNome(et_sobrenome) && validarRG(et_RG) && validarCPF(et_CPF) && validarDataNasc(et_dataNasc) && validarEmail(et_email) && validarTelefone(et_telefone) && validarCidade(et_cidade) && validarSenha(et_senha)){
-                    usuario = new Usuarios();
+                    usuario = new Usuario();
 
                     nome = et_nome.getText().toString();
                     sobrenome = et_sobrenome.getText().toString();
@@ -97,13 +100,10 @@ public class CadastroActivity extends AppCompatActivity {
                     usuario.RG = RG;
                     usuario.nascimento = nascimento;
 
-                    try{
-                        usuarioRepo.inserir(usuario);
-                        Log.d("TESTE CADASTRO","funfou?");
-                        finish();
-                    } catch (SQLException ex) {
-                        Log.d("TESTE CADASTRO ERRO","LC: "+ ex.getMessage());
-                    }
+                    usuarioRepo.inserir(usuario);
+                    Toast.makeText(getBaseContext(),"Usuário cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
+
+                    finish();
                 }
             }
         });
@@ -139,6 +139,10 @@ public class CadastroActivity extends AppCompatActivity {
         String email = editText.getText().toString();
         if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             editText.setError("Insira um E-mail válido.");
+            return false;
+        }
+        if(usuarioExiste(email)){
+            editText.setError("Este email já está sendo usado.");
             return false;
         }
         return true;

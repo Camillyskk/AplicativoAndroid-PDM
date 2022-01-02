@@ -43,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
-        android:layout_marginBottom="15dp">
+        android:layout_marginBottom="72dp">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -60,7 +60,7 @@
                 android:background="@drawable/custom_edit_text"
                 android:ems="10"
                 android:enabled="false"
-                android:hint="@string/usuario"
+                android:hint="@string/Nome"
                 android:importantForAutofill="no"
                 android:inputType="text"
                 android:textColorHint="@color/grey2"
@@ -76,7 +76,7 @@
                 android:background="@drawable/custom_edit_text"
                 android:ems="10"
                 android:enabled="false"
-                android:hint="@string/sobrenome_usuario"
+                android:hint="@string/sobrenome"
                 android:importantForAutofill="no"
                 android:inputType="text"
                 android:textColorHint="@color/grey2"
@@ -92,7 +92,7 @@
                 android:background="@drawable/custom_edit_text"
                 android:ems="10"
                 android:enabled="false"
-                android:hint="@string/usuario_user_com"
+                android:hint="@string/e_mail"
                 android:importantForAutofill="no"
                 android:inputType="textEmailAddress"
                 android:textColorHint="@color/grey2"
@@ -108,7 +108,7 @@
                 android:background="@drawable/custom_edit_text"
                 android:ems="10"
                 android:enabled="false"
-                android:hint="@string/_555140028922"
+                android:hint="@string/telefone"
                 android:importantForAutofill="no"
                 android:inputType="phone"
                 android:textColorHint="@color/grey2"
@@ -124,7 +124,7 @@
                 android:background="@drawable/custom_edit_text"
                 android:ems="10"
                 android:enabled="false"
-                android:hint="@string/capivara_do_sul"
+                android:hint="@string/Cidade"
                 android:importantForAutofill="no"
                 android:inputType="text"
                 android:textColorHint="@color/grey2"
@@ -140,7 +140,7 @@
                 android:background="@drawable/custom_edit_text"
                 android:ems="10"
                 android:enabled="false"
-                android:hint="@string/_06_03_2003"
+                android:hint="@string/data_de_nascimento"
                 android:importantForAutofill="no"
                 android:inputType="date"
                 android:textColorHint="@color/grey2"
@@ -156,7 +156,7 @@
                 android:background="@drawable/custom_edit_text"
                 android:ems="10"
                 android:enabled="false"
-                android:hint="@string/_112233445566"
+                android:hint="@string/rg"
                 android:importantForAutofill="no"
                 android:inputType="number"
                 android:textColorHint="@color/grey2"
@@ -172,7 +172,7 @@
                 android:background="@drawable/custom_edit_text"
                 android:ems="10"
                 android:enabled="false"
-                android:hint="@string/_7841123789"
+                android:hint="@string/cpf"
                 android:importantForAutofill="no"
                 android:inputType="number"
                 android:textColorHint="@color/grey2"
@@ -188,7 +188,7 @@
                 android:background="@drawable/custom_edit_text"
                 android:ems="10"
                 android:enabled="false"
-                android:hint="********"
+                android:hint="@string/senha"
                 android:importantForAutofill="no"
                 android:inputType="textPassword"
                 android:textColorHint="@color/grey2"
@@ -208,19 +208,6 @@
                 app:backgroundTint="@color/orange"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="@id/valor" />
-
-            <Button
-                android:id="@+id/button"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="56dp"
-                android:background="@android:color/transparent"
-                android:text="@string/sair"
-                android:textColor="@color/red"
-                app:backgroundTint="@color/orange"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="@id/atualizar" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

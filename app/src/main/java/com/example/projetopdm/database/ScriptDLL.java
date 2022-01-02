@@ -1,18 +1,12 @@
 package com.example.projetopdm.database;
 
-import com.example.projetopdm.R;
-import com.example.projetopdm.dominios.entidades.Procedimento;
-import com.example.projetopdm.dominios.entidades.repositorios.ProcedimentoRepo;
-import com.example.projetopdm.dominios.entidades.repositorios.UsuarioRepo;
-import com.google.android.material.snackbar.Snackbar;
-
 public class ScriptDLL {
 
-    public static String getCreateTableUsuarios(){
+    public static String getCreateTableUsuario(){
 
         StringBuilder sql = new StringBuilder();
 
-        sql.append("CREATE TABLE IF NOT EXISTS Usuarios (");
+        sql.append("CREATE TABLE IF NOT EXISTS Usuario (");
         sql.append("ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, ");
         sql.append("Email VARCHAR(100) NOT NULL,");
         sql.append("Senha VARCHAR(45) NOT NULL, ");
@@ -49,9 +43,9 @@ public class ScriptDLL {
         sql.append("Hora VARCHAR(6) NOT NULL, ");
         sql.append("Procedimento VARCHAR(45) NOT NULL, ");
         sql.append("Valor DOUBLE NOT NULL, ");
-        sql.append("Usuarios_ID NOT NULL, ");
+        sql.append("Usuario_ID NOT NULL, ");
         sql.append("Procedimento_ID NOT NULL, ");
-        sql.append("FOREIGN KEY (Usuarios_ID) REFERENCES Usuarios (ID) ");
+        sql.append("FOREIGN KEY (Usuario_ID) REFERENCES Usuario (ID) ");
         sql.append("ON DELETE NO ACTION ");
         sql.append("ON UPDATE NO ACTION ");
         sql.append("FOREIGN KEY (Procedimento_ID) REFERENCES Procedimento (ID) ");
