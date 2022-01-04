@@ -132,9 +132,8 @@ public class ProfileFragment extends Fragment {
 
                 if(et_email.isEnabled()){
                    if(isDadosValidos(user.email)) {
-                       cabecalho.setText("Bem vindo(a) " + user.nome);
-                       usuarioRepo.alterar(user);
-                       desabilitarEditTexts();
+                        usuarioRepo.alterar(user);
+                        desabilitarEditTexts();
                     }
                 }
                 else{
